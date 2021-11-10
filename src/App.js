@@ -1,37 +1,37 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Info from "./components/Info";
+import Info from "./components/Shop";
 import QA from "./components/QA";
 import Todo from "./components/Todo";
 import Wait from "./components/Wait";
+import Shop from './components/Shop'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Drawer from './components/drawer';
+import {makeStyles} from '@mui/styles';
+import { ClassNames } from "@emotion/react";
+import About from "./components/About";
+
+const useStyles=makeStyles({
+  container:{
+    display: "flex"
+  }
+});
+
+
 
 function App() {
+  const classes=useStyles();
   return (
-    // <div className="App">
-    //   <Navbar />
-    // </div>
+    <div className={classes.container}>
     <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/home" exact>
-          <Home />
-        </Route>
-        <Route path="/info">
-          <Info />
-        </Route>
-        <Route path="/qa" exact>
-          <QA />
-        </Route>
-        <Route path="/todo">
-          <Todo />
-        </Route>
-        <Route path="/wait">
-          <Wait />
-        </Route>
-      </Switch>
-    </Router>
+    <Drawer />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/Takequiz" component={Todo}/>
+    </Switch>
+  </Router>
+  </div>
   );
 }
 

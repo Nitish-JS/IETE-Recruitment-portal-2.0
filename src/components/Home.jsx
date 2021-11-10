@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-
-export default class Home extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Home Page</h1>
-            </div>
-        )
-    }
+import React from "react";
+import Heading from "./Home/Heading";
+import Registraion from './Home/Registration'; 
+function Home() {
+  return (
+    <div className='home'>
+      <Heading />
+      <Registraion />
+    </div>
+    
+  );
 }
+
+export default Home;
