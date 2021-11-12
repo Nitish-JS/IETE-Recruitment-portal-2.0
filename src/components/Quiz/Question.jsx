@@ -5,6 +5,9 @@ const Question = (props) => {
     const { id } = props;
     // const { step, ques, nextStep } = props;
     // const { question, options, answer } = ques;
+
+    
+
     return (
         <div>
             <h1>Question {id}</h1>

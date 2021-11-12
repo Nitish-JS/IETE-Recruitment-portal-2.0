@@ -5,18 +5,10 @@ import QuizMain from './Quiz/QuizMain';
 const ReadyPage = () => {
     return (
         <div>
-            <Router>
-                <h1>Ready Page</h1>
-                <Link to="/quiz">
-                    <button>Take Test</button>
-                </Link>
-                
-                <Switch>
-                    <Route path="/quiz">
-                        <QuizMain />
-                    </Route>
-                </Switch>
-            </Router>
+            <h1>Ready Page</h1>
+            <Link to="/quiz/ques/1">
+                <button>Take Test</button>
+            </Link>
         </div>
     )
 }
