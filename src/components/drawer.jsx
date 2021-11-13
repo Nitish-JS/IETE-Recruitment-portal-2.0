@@ -34,12 +34,17 @@ const Drawer = props => {
     {
         text: "Logo",
       icon: <img src={Logo_C} />,
-      onClick: () => history.push("/")
+      onClick: () => (
+        history.push("/")
+      )
     },
     {
       text: "Home",
       icon: <img src={HomeIcon_C} />,
-      onClick: () => history.push("/")
+      onClick: () => {
+        history.push("/")
+        return(<img src={HomeIcon} />);
+      }
     },
     {
         text: "info",
@@ -71,7 +76,7 @@ const Drawer = props => {
             <ListItem button key={text} onClick={onClick}>
             {index===0 ? <ListItemIcon style={{marginBottom: "100px"}}>{icon}</ListItemIcon>:null}
 
-              {index!==0 ? <ListItemIcon>{icon}</ListItemIcon>: null}
+              {index!==0 ? <ListItemIcon >{icon}</ListItemIcon>: null}
             </ListItem>
           );
         })}

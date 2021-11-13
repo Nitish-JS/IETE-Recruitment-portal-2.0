@@ -10,7 +10,8 @@ import Drawer from './components/drawer';
 import {makeStyles} from '@mui/styles';
 import { ClassNames } from "@emotion/react";
 import About from "./components/About";
-
+// import Form from './components/Registration/Signup_page';
+import form from "./components/Registration/form";
 const useStyles=makeStyles({
   container:{
     display: "flex"
@@ -29,6 +30,9 @@ function App() {
       <Route path="/" exact component={Home} />
       <Route path="/about" component={About} />
       <Route path="/Takequiz" component={Todo}/>
+      {/* <Route path='/signup' component={Signup} /> */}
+      <Route path='/signup' component={form} />
+      {/* <Route path='/signup' component={Form} /> */}
     </Switch>
   </Router>
   </div>

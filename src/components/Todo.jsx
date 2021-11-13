@@ -5,6 +5,7 @@ import Instructions from './Quiz/instruction/instructions';
 function ToDo() {
     return (
         <div style={{width:"100%"}}>
+
             <Heading />
             <Time />
             <Instructions />
