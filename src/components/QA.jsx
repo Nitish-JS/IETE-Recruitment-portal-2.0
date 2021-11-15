@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class QA extends Component {
-    render() {
-        return (
-            <div>
-                <h1>QA Page</h1>
-            </div>
-        )
-    }
+function ToDo() {
+    return (
+        <div>
+            <h1 style={{color:"white"}}>To Do page</h1>
+        </div>
+    )
 }
+
+export default ToDo;

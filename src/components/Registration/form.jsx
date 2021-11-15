@@ -10,16 +10,15 @@ const Form = () => {
         setSubmitted(true);
     }
     return (
-        <>
+
         <div className="form-container">
            <Signup_form />
             {/* {!submitted ?
             (<Signup_form submitForm={submitForm}/>): ({FormSuccess}) } */}
         
         </div>
-            
-        </>
-    )
+        
+        )
 }
 
 export default Form

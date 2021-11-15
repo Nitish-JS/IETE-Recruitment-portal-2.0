@@ -9,11 +9,6 @@
     text-align: center;
     position: relative;
     left: 20%;
-    -webkit-appearance: none;
-    box-shadow: -10px -10px 10px rgba(102, 97, 97, 0.25),
-    10px 10px 10px  rgba(12, 110, 106, 0.7);
-    margin: 15px 0;
-    border: 8px solid rgba(102, 97, 97, 0.25);
 }
 .Carousel-outer-div{
     background-color:  rgba(77,77,77,0.2);
