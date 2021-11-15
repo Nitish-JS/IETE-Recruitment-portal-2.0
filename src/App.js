@@ -12,6 +12,8 @@ import { ClassNames } from "@emotion/react";
 import About from "./components/About";
 // import Form from './components/Registration/Signup_page';
 import form from "./components/Registration/form";
+import Login_form from "./components/login/Login_form";
+import './components/Registration/form.css'
 const useStyles=makeStyles({
   container:{
     display: "flex"
@@ -32,6 +34,7 @@ function App() {
       <Route path="/Takequiz" component={Todo}/>
       {/* <Route path='/signup' component={Signup} /> */}
       <Route path='/signup' component={form} />
+      <Route path='/login' component={Login_form} />
       {/* <Route path='/signup' component={Form} /> */}
     </Switch>
   </Router>

@@ -17,18 +17,17 @@ body{
   background-color: rgba(77,77,77,0.2) !important;
 }
 
-.makeStyles-container-1{
-  height: 100vh !important;
-} 
 
 
-.home-heading{
+.home-heading-1{
   color: white;
-  position: relative;
-  /* top: 10%;
-  left: 10%;
-  bottom: 10%; */
-  margin: 10% 7.5% ;
+  margin-top: 10% ;
+  font-size: 4rem;
+  line-height: 1.5;
+}
+.home-heading-2{
+  color: white;
+  margin-bottom: 10%  ;
   font-size: 4rem;
   line-height: 1.5;
 }
