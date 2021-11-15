@@ -1,0 +1,25 @@
+.slick-slider{
+    width: 80vw !important;
+}
+
+.card-img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    left: 20%;
+}
+.Carousel-outer-div{
+    background-color:  rgba(77,77,77,0.2);
+    padding: 2%;
+    border-radius: 20px 20px 0 0;
+    width: 85vw;
+    
+}
+.slick-next{
+    left: 94% !important;
+}
+.slick-prev{
+    left: 0 !important;
+}
