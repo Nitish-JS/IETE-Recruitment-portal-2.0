@@ -1,0 +1,64 @@
+[
+    {
+        "id": 1,
+        "ques_main": "Founder of Tesla?",
+        "ques_type": 0,
+        "options": [
+            {
+                "option": "Elon Musk"
+            },
+            {
+                "option": "Mark Zuckerberg"
+            },
+            {
+                "option": "Sundar Pichai"
+            },
+            {
+                "option": "Bill Gates"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "ques_main": "CEO of Google?",
+        "ques_type": 0,
+        "options": [
+            {
+                "option": "Sundar Pichai"
+            },
+            {
+                "option": "Bill Gates"
+            },
+            {
+                "option": "Elon Mush"
+            },
+            {
+                "option": "Mark Zuckerberg"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "ques_main": "RR Stands for?",
+        "ques_type": 0,
+        "options": [
+            {
+                "option": "Hyundai"
+            },
+            {
+                "option": "Honda"
+            },
+            {
+                "option": "Rolls Royce"
+            },
+            {
+                "option": "BMW"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "ques_main": "Enter your full name?",
+        "ques_type": 1
+    }
+]
