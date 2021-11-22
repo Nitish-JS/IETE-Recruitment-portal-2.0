@@ -21,15 +21,15 @@ const App_Form = () => {
         setErrors(validate(values));
         setSubmitted(true);
         console.log(values);
-        const response=await fetch("https://recportal-iete.herokuapp.com/auth/login/",{
-            method:"POST",
-            credentials: 'include',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(values)
-        }).catch(err => console.log(err));
-        const content= await response.json();
-        console.log(content);
-        setSubmitted(true);
+        // const response=await fetch("https://recportal-iete.herokuapp.com/auth/login/",{
+        //     method:"POST",
+        //     credentials: 'include',
+        //     headers: {'Content-Type' : 'application/json'},
+        //     body: JSON.stringify(values)
+        // }).catch(err => console.log(err));
+        // const content= await response.json();
+        // console.log(content);
+        // setSubmitted(true);
     }
 
    
