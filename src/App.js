@@ -1,11 +1,8 @@
 
 import "./App.css";
-import Home from "./components/Home";
-import Info from "./components/Shop";
-import QA from "./components/QA";
-import Todo from "./components/Todo";
-import Wait from "./components/Wait";
-import Shop from './components/Shop'
+import Routing from "./components/Routing";
+import ReadyPage from "./components/ReadyPage";
+import QuizRouting from "./components/Quiz/QuizRouting";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Drawer from './components/drawer';
 import {makeStyles} from '@mui/styles';
@@ -31,24 +28,16 @@ const useStyles=makeStyles({
 function App() {
   const classes=useStyles();
   return (
-    <div className={classes.container}>
     <Router>
-    <Drawer />
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/info" component={About} />
-      <Route path="/Takequiz" component={Todo}/>
-      {/* <Route path='/signup' component={Signup} /> */}
-      <Route path='/signin' component={form} />
-      <Route path='/login' component={App_form} />
-      <Route path='/signup' component={Form} />
-      {/* <Route path='/signup' component={Form} /> */}
-      {/* <Route path='/res' component={Res_home} /> */}
-      {/* <Route path?re???s' component={OTP_} /> */}
-      <Route path='/otp_login' component={OTP_Form} />
-    </Switch>
-  </Router>
-  </div>
+      <Switch>
+        <Route path="/ready" exact>
+          <QuizRouting />
+        </Route>
+        <Route path="/">
+          <Routing />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
