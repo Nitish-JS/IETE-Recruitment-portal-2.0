@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Drawer as MUIDrawer,
   ListItem,
@@ -43,7 +43,7 @@ const Drawer = props => {
       icon: <img src={HomeIcon_C} />,
       onClick: () => {
         history.push("/")
-        return(<img src={HomeIcon} />);
+
       }
     },
     {
@@ -67,6 +67,7 @@ const Drawer = props => {
       onClick: () => history.push("/Takequiz")
     }
   ];
+  
   return (
     <MUIDrawer variant="permanent" className={classes.drawer}>
       <List>
@@ -76,7 +77,7 @@ const Drawer = props => {
             <ListItem button key={text} onClick={onClick}>
             {index===0 ? <ListItemIcon style={{marginBottom: "100px"}}>{icon}</ListItemIcon>:null}
 
-              {index!==0 ? <ListItemIcon >{icon}</ListItemIcon>: null}
+              {index!==0 ? <ListItemIcon  >{icon}</ListItemIcon>: null}
             </ListItem>
           );
         })}

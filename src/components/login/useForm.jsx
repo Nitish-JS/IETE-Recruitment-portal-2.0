@@ -13,6 +13,7 @@ const useForm = (callback,validate) => {
             ...values,
             [name]:value
         })
+        
     }
     const handleSubmit=e=>{
         e.preventDefault();

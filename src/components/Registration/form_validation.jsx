@@ -2,8 +2,8 @@ import React from 'react'
 
 function form_validation(values) {
     let errors={}
-    if(!values.username.trim()){
-        errors.username="Username required"
+    if(!values.name.trim()){
+        errors.name="Username required"
     }
 
     if(!values.email.trim())
@@ -21,14 +21,14 @@ function form_validation(values) {
         errors.password="Password needs to be atleast 8 character long"
     }
 
-    if(!values.password2)
-    {
-        errors.password2="Confirm your password"
-    }
-    else if(values.password2!==values.password)
-    {
-        errors.password2="Passwords do not match"
-    }
+    // if(!values.password2)
+    // {
+    //     errors.password2="Confirm your password"
+    // }
+    // else if(values.password2!==values.password)
+    // {
+    //     errors.password2="Passwords do not match"
+    // }
     return errors;
 }
 export default form_validation;

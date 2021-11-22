@@ -1,8 +1,8 @@
 import React from "react";
-
+import Domain_page from "./domains/Domain_page";
 function About() {
   return (
-    <h1>About page</h1>
+    <Domain_page />
   );
 }
 

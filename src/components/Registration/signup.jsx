@@ -1,20 +1,95 @@
-import { Grid, Paper, TextField } from '@mui/material';
-import React from 'react'
+import React from "react";
+import useForm from "./useForm";
+import validate from "./form_validation";
+const Signup = (props) => {
+  const {values,handleChange,handleSubmit,errors} = props;
+  console.log("params", values);
 
-const Signup=()=>{
-    const paperStyle={padding:"20px", height:"80vh",width:"40vw",margin: "10% 40%"}
-    return(
-        <Grid >
-            <Paper elevation={10} style={paperStyle}>
-               <h1 style={{textAlign:'center',color:"white"}}>REGISTER HERE</h1> 
-            <TextField label='Username' placeholder="Enter Username" style={{width:"70%"}}/>
-            <TextField label='Password' placeholder="Enter password" style={{width:"70%"}}/>
-            <TextField label='Retype Password' placeholder="Retype password " style={{width:"70%"}}/>
-            <TextField label='Email ID' placeholder="Enter email ID" style={{width:"70%"}}/>
+  return (
+    // <div class="wrapper">
+      <div class="container">
+        <div class="col-left">
+          <div class="login-form">
+            <h2>Register Here</h2>
+            <form onSubmit={handleSubmit} >
+            <p>
+                <span className="input-label">Username</span>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="name"
+                  required
+                  onChange={handleChange}
+                  value={values ? values.name : ""}
+                  name="name"
+                />
+                {/* {errors.name && <p>{errors.name}</p>} */}
+              <p>
+                <span className="input-label">Email</span>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="email"
+                  required
+                  onChange={handleChange}
+                  value={values? values.email: ""}
+                />
+                {/* {errors.email && <p>{errors.email}</p>} */}
+              </p>
+              
+              </p>
+              <p>
+                <span className="input-label">Password</span>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  required
+                  onChange={handleChange}
+                  value={values ? values.password : ""}
+                />
+                {/* {errors.password && <p>{errors.password}</p>} */}
+              </p>
 
-            </Paper>
-        
-        </Grid>
-    )
-}
+              <p>
+                <span className="input-label">Registration number</span>
+                <input
+                  id="reg_no"
+                  name="reg_no"
+                  type="text"
+                  placeholder="Registration number"
+                  required
+                  onChange={handleChange}
+                  value={values ? values.reg_no : ""}
+                />
+                {/* {errors.password2 && <p>{errors.password2}</p>} */}
+              </p>
+              <p>
+                <span className="input-label">Phone Number</span>
+                <input
+                  id="phone"
+                  name='phone'
+                  type="text"
+                  placeholder="Number"
+                  required
+                  onChange={handleChange}
+                  value={values ? values.phone : ""}
+                />
+              </p>
+              <p>
+                <input class="btn" type="submit" value="Sign In" />
+              </p>
+              <span className="register-login">
+                Already Registered? <a href="/login">Login</a>
+              </span>
+            </form>
+          </div>
+        </div>
+      </div>
+    // </div>
+  );
+};
+
 export default Signup;

@@ -4,12 +4,13 @@ import {makeStyles} from '@mui/styles';
 import { withRouter } from "react-router-dom";
 
 // const useStyles=makeStyles(theme =>({
-//     text:{
-//         color: "#14CC7F"
+//     button:{
+//         [theme.breakpoints.between('sm', 'md')]: {
+//             size: "small"
 
 //     }
-// })); 
-// classes={{text: classes.text}}
+// }})); 
+
 
 
 

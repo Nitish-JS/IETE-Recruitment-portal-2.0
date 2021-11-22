@@ -1,7 +1,7 @@
 import React from "react";
-import useForm from "./useForm";
-import validate from './Otp_validation';
-const Signup = (props) => {
+
+import '../Registration/form.css'
+const Otp_page = (props) => {
   const {values,handleChange,handleSubmit,errors} = props;
   console.log("params", values);
 
@@ -10,7 +10,7 @@ const Signup = (props) => {
       <div class="container">
         <div class="col-left">
           <div class="login-form">
-            <h2>Login</h2>
+            <h2>Verify Email-ID</h2>
             <form onSubmit={handleSubmit} >
             <p>
                 <span className="input-label">Email</span>
@@ -26,7 +26,7 @@ const Signup = (props) => {
                 {/* {errors.email && <p>{errors.email}</p>} */}
               </p>          
             <p>
-                <span className="input-label">Password</span>
+                <span className="input-label">OTP</span>
                 <input
                   id="otp"
                   name="otp"
@@ -39,7 +39,7 @@ const Signup = (props) => {
                 {/* {errors.password && <p>{errors.password}</p>} */}
             </p>
             <p>
-                <input class="btn" type="submit" value="Sign In" />
+                <input class="btn" type="submit" value="Verify" />
               </p>
             </form>
           </div>
@@ -49,4 +49,4 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+export default Otp_page;

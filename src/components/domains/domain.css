@@ -1,0 +1,52 @@
+.domain-outer-div{
+    background-color:  rgba(77,77,77,0.2);
+    padding: 2%;
+    border-radius: 20px 20px 0 0;
+    width: 85vw;
+    margin-top: 5%;
+}
+.domain-main-heading{
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+}
+.circle-card-left{
+    height: 200px;
+    width: 200px;
+    box-shadow: -10px -10px 10px rgba(102, 97, 97, 0.25),
+    10px 10px 10px rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    background-color: rgba(77, 77, 77, 0.08);
+
+    
+}
+.domain-description-right{
+    height: 80px;
+    width: 500px;
+    box-shadow: -10px -10px 10px rgba(108, 104, 104, 0.13),
+    10px 10px 10px rgba(0, 0, 0, 0.41);
+    background: rgba(77, 77, 77, 0.11);
+    border-radius: 24px;
+    margin: 5% 0;
+}
+.circle-card-left-image{
+    height: 199px;
+    width: 199px;
+    border-radius: 50%;
+
+}
+.domain-card{
+    display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-basis: 50%; 
+  margin: 5% 0;
+}
+
+/* .domain-page{
+    background-image: url('../../images/Ellipse\ 4.svg');
+    height: 100%;
+    width: 100%;
+   background-repeat: no-repeat;
+   background-position: left 750px bottom 750px;
+} */

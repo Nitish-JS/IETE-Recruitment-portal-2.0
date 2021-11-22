@@ -4,8 +4,8 @@ function time() {
     return (
         
         <div id="quiz-instruction-time">
-            <h2 class="quiz-instruction-alignleft">INSTRUCTIONS</h2>
-            <h2 class="quiz-instruction-alignright">TIME : 45.00 MIN</h2>
+            <h2 className="quiz-instruction-alignleft">INSTRUCTIONS</h2>
+            <h2 className="quiz-instruction-alignright">TIME : 45.00 MIN</h2>
         </div>
     )
 }
