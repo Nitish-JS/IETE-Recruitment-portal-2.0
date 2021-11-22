@@ -1,52 +1,97 @@
 import React, { Component } from 'react';
-import '../../style/Quiz/NavQuiz.css';
+// import '../../style/Quiz/NavQuiz.css';
 import {Link} from 'react-router-dom';
-import Question from './Question'
+import { Box, Button, Typography, Container } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
 
+const theme = createTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    primary: {
+      main: '#0971f1',
+      darker: '#053e85',
+    },
+    darkGrey: {
+      main: '#303030'
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Monument Extended'
+    ].join(','),
+  },
+});
 
+const NavQuiz = () => {
+    return (
+        <ThemeProvider theme={theme}>
 
-class NavQuiz extends Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="heading">QUESTIONS: </div>
-                <div className="quesContainer">
-                    <div className="ques">
-                        <Link to="/quiz/ques/1">
-                            1
-                        </Link>
-                    </div>
-                    <div className="ques">
-                        <Link to="/quiz/ques/2">
-                            2
-                        </Link>
-                    </div>
-                    <div className="ques">
-                        <Link to="/quiz/ques/3">
-                            3
-                        </Link>
-                    </div>
-                    {/* <div className="ques">4</div>
-                    <div className="ques">5</div>
-                    <div className="ques">6</div>
-                    <div className="ques">7</div>
-                    <div className="ques">8</div>
-                    <div className="ques">9</div>
-                    <div className="ques">10</div>
-                    <div className="ques">11</div>
-                    <div className="ques">12</div>
-                    <div className="ques">13</div>
-                    <div className="ques">14</div>
-                    <div className="ques">15</div>
-                    <div className="ques">16</div>
-                    <div className="ques">17</div>
-                    <div className="ques">18</div>
-                    <div className="ques">19</div>
-                    <div className="ques">20</div> */}
-                </div>
-            </div>
-        )
-    }
+            <Container className="container" maxWidth="xl" sx={{ height: "100%", background: "black", width: "30%", padding: "2%", margin: "2%" }}>
+                
+                <Box className="heading" sx={{ color: "white", padding: "5%" }} >
+                    <Typography>
+                        QUESTIONS: 
+                    </Typography> 
+                </Box>
+
+                <Box className="quesContainer" sx={{ display: "flex", padding: "2%", flexWrap: "wrap", justifyContent: "space-around" }}>
+                    
+                    <Link to="/quiz/ques/1" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 1 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/2" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 2 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/3" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 3 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/4" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 4 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/1" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 1 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/2" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 2 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/3" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 3 </Typography>
+                        </Button>
+                    </Link>
+
+                    <Link to="/quiz/ques/4" style={{ margin: "10% 2%" }}>
+                        <Button color="darkGrey" variant="contained" sx={{ width: "25%", height: "180%", borderRadius: "10px"}}> 
+                           <Typography color="white"> 4 </Typography>
+                        </Button>
+                    </Link>
+                    
+                </Box>
+            </Container>
+        </ThemeProvider>
+    )
+
 }
 
 export default NavQuiz
