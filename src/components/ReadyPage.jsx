@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import { Typography, Container, Box, List, ListItemText } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
-
 const theme = createTheme({
     status: {
       danger: '#e53e3e',
@@ -79,4 +78,4 @@ const ReadyPage = () => {
     )
 }
 
-export default ReadyPage
+export default ReadyPage;

@@ -3,7 +3,7 @@ import useForm from "./useForm";
 import validate from "./login_form_validation";
 const Login_form = (props) => {
   const {values,handleChange,handleSubmit,errors} = props;
-  console.log("params", values);
+  // console.log("params", values);
 
   return (
     // <div class="wrapper">

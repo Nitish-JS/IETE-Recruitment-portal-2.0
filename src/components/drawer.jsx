@@ -62,9 +62,13 @@ const Drawer = props => {
       onClick: () => history.push("/QA")
     },
     {
-      text: "Takequiz",
+      text: "logout",
       icon: <img src={Todo} />,
-      onClick: () => history.push("/Takequiz")
+      onClick: async (e) => {
+        history.push("/")
+        localStorage.clear();
+        
+      }
     }
   ];
   

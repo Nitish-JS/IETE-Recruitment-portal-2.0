@@ -7,9 +7,9 @@ import { Container } from '@mui/material';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+import ProtectedRoute from './ProtectedRoutes';
 
-
-const QuesRouting = () => {
+const QuesRouting = (props) => {
     // const [step, setStep] = useState(1);
     
     return (
@@ -17,9 +17,9 @@ const QuesRouting = () => {
             <Router>
                 <div style={{ display: "flex" }}>
                 <NavQuiz />
-                <Route path = "/quiz/ques/:ques_id">
-                    <Question />
-                </Route>
+                <Route path = "/quiz/ques/:ques_id" component={Question} />
+                    {/* <Question />
+                </Route> */}
                 </div>
             </Router>
         </Container>
