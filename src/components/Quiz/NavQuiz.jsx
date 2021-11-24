@@ -40,7 +40,7 @@ const NavQuiz = () => {
                 <Box className="quesContainer" sx={{ display: "flex", padding: "2%", flexWrap: "wrap", justifyContent: "space-around" }}>
                     
                     <Link to="/quiz/ques/1" style={{ margin: "10% 2%" }}>
-                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}}> 
+                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}} > 
                            <Typography color="white"> 1 </Typography>
                         </Button>
                     </Link>

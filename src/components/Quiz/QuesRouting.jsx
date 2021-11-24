@@ -13,7 +13,7 @@ const QuesRouting = () => {
     // const [step, setStep] = useState(1);
     
     return (
-        <Container maxWidth="xl" style={{ background: "black", height: "1000px" }}>
+        <Container maxWidth="xl" style={{ background: "black", height: "100vh", overflow: "auto" }}>
             <Router>
                 <div style={{ display: "flex" }}>
                 <NavQuiz />
