@@ -2,6 +2,7 @@
 import React from 'react';
 import Question from './Question';
 import NavQuiz from './NavQuiz';
+import Clock from './Clock';
 import { Container } from '@mui/material';
 
 
@@ -16,10 +17,14 @@ const QuesRouting = () => {
         <Container maxWidth="xl" style={{ background: "black", height: "100vh", overflow: "auto" }}>
             <Router>
                 <div style={{ display: "flex" }}>
-                <NavQuiz />
-                <Route path = "/quiz/ques/:ques_id">
-                    <Question />
-                </Route>
+                    <div style={{ width: "25%", paddingTop: "5%"}}>
+                        <Clock />
+                        <NavQuiz />
+                    </div>
+                
+                    <Route path = "/quiz/ques/:ques_id">
+                        <Question />
+                    </Route>
                 </div>
             </Router>
         </Container>

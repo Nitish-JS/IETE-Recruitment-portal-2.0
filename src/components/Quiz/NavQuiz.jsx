@@ -29,7 +29,7 @@ const NavQuiz = () => {
     return (
         <ThemeProvider theme={theme}>
 
-            <Container className="container" maxWidth="xl" sx={{ height: "100%", background: "black", width: "30%", padding: "2%", margin: "2%" }}>
+            <Container className="container" maxWidth="xl" sx={{ height: "100%", background: "black", width: "100%", padding: "2%", margin: "2%" }}>
                 
                 <Box className="heading" sx={{ color: "white", padding: "5%" }} >
                     <Typography>
