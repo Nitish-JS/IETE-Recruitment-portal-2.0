@@ -8,9 +8,9 @@ import { Container } from '@mui/material';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+import ProtectedRoute from './ProtectedRoutes';
 
-
-const QuesRouting = () => {
+const QuesRouting = (props) => {
     // const [step, setStep] = useState(1);
     
     return (

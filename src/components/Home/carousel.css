@@ -1,0 +1,78 @@
+.slick-slider{
+    width: 80vw !important;
+}
+
+.circle-card{
+    
+}
+.card-img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    left: 20%;
+    box-shadow: -10px -10px 10px rgba(102, 97, 97, 0.25),
+    10px 10px 10px rgba(19, 194, 124, .40);
+    margin: 20px 0;
+
+}
+.Carousel-outer-div{
+    background-color:  rgba(77,77,77,0.2);
+    padding: 2%;
+    border-radius: 20px 20px 0 0;
+    width: 85vw;
+   
+}
+.slick-next{
+    left: 94% !important;
+}
+.slick-prev{
+    left: 0 !important;
+}
+
+.carousel-heading{
+    color: white;
+    position: relative;
+    left: 50px;
+    margin: 3% 0;
+}
+
+.Domain-name{
+    text-align: center;
+    position: relative;
+    right: 5%;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: white;
+    /* margin: 10% 0;
+    /* margin-top: 7.5%;
+    margin-bottom: 5%; */ 
+}
+.timeline-heading{
+    color: white;
+    position: relative;
+    left: 50px;
+    top: 50px;
+    margin: 3% 0;
+}
+.slick-dots li button:before{
+    opacity: 100 ;
+    color: #14CC7F ;
+}
+.css-55vwbm-MuiTimeline-root{
+    position: relative ;
+    top: 50px ;
+    margin-bottom: 5%;
+}
+.css-55vwbm-MuiTimeline-root{
+    color: #14CC7F !important;
+}
+
+.css-v6mo1y-MuiTimelineDot-root{
+    background-color: #14CC7F !important;
+}
+.css-1ami7lv-MuiTimelineConnector-root{
+    background-color: #14CC7F !important;
+    height: 50px;
+}

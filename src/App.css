@@ -1,38 +1,145 @@
-.App {
-  text-align: center;
+
+* {
+   font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+body{
+  background-color: #050D13;
+  
+}
+.css-bshv44-MuiButtonBase-root-MuiListItem-root{
+  margin: 25px 0 !important;
+}
+.MuiPaper-root{
+  background-color: rgba(77,77,77,0.2) !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.home{
+  width: 100%;
+  background-image: url("./images/Group\ 67.svg") ;
+    background-position: left 100px bottom 200px;
+    background-repeat: no-repeat;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.home-heading-1{
   color: white;
+  margin-top: 10% ;
+  font-size: 4rem;
+  line-height: 1.5;
+}
+.home-heading-2{
+  color: white;
+  margin-bottom: 10%  ;
+  font-size: 4rem;
+  line-height: 1.5;
+}
+.home-registration{
+  margin: 10% 7.5% ;
 }
 
-.App-link {
-  color: #61dafb;
+.home-registration h2{
+  font-weight: normal;
+  color: white;
+  font-size: 1.5rem;
+}
+@media only screen and (min-width: 600px){
+  .take-test-button{
+    margin-bottom: 20px !important;
+    margin-top: 0 !important;
+    position: relative;
+    left: 40% !important;
+   bottom: 5% !important;
+   font-size: 5rem !important;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 600px) {
+  .Carousel-outer-div{
+    margin-top: 50%;
   }
-  to {
-    transform: rotate(360deg);
+  .home-heading-1,.home-heading-2{
+    font-size: 2rem;
   }
+  .carousel-heading{
+    font-size: 3rem;
+  }
+  
 }
+/* register here button*/
+.css-kpm0tx-MuiButtonBase-root-MuiButton-root{
+  font-size: 1.5rem !important;
+  color: white !important;
+  margin-bottom: 1rem !important;
+}
+.css-kpm0tx-MuiButtonBase-root-MuiButton-root:hover{
+  background-color: #14CC7F !important;
+}
+
+/*Already registered button*/
+.css-9y1egq-MuiButtonBase-root-MuiButton-root{
+  margin-top: 24px !important;
+  color: #14CC7F !important;
+  border-color: #14CC7F !important;
+  font-size: 1.2rem !important;
+}
+.registration-innerdiv{
+  width: fit-content;
+  text-align: center;
+
+}
+
+
+.quiz-heading{
+  
+  text-align: center;
+  position: relative;
+  top: 50px;  
+  font-size: 4rem;
+  color: white;
+  font-weight: lighter;
+}
+#quiz-instruction-time{
+  position: relative;
+  top: 100px;
+}
+.quiz-instruction-alignleft {
+  color: white;
+	float: left;
+
+}
+.quiz-instruction-alignright {
+  color: white;
+	float: right;
+  position: relative;
+  right: 50px;
+}
+
+.quiz-instructions-list{
+  
+  color: white;
+  position: relative;
+  top: 150px;
+  right: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+  list-style: none;
+  text-align: left;
+  
+}
+
+.quiz-instructions-list li::before{
+    /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    /* //color: red; Change the color */
+    /* font-weight: bold; If you want it to be bold */
+    /* display: inline-block; Needed to add space between the bullet and the text */
+    /* width: 1em; Also needed for space (tweak if needed) */
+    /* margin-left: -1em; Also needed for space (tweak if needed) */
+    font-size: 200%;
+    padding-right: 5px;
+    content: "•"; color: #14CC7F;
+    display: inline-block; width: 1em;
+    margin-left: -1em
+  } 

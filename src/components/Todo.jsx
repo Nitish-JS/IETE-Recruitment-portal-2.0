@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Heading from "./Quiz/instruction/heading";
+import Time from "./Quiz/instruction/time";
+import Instructions from './Quiz/instruction/instructions';
+function ToDo() {
+    return (
+        <div style={{width:"100%"}}>
 
-export default class Todo extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Todo Page</h1>
-            </div>
-        )
-    }
+            <Heading />
+            <Time />
+            <Instructions />
+        </div>
+    )
 }
+
+export default ToDo;
