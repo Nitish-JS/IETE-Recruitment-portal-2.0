@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 
 const Clock = () =>  {
-    const [seconds, setSeconds] = React.useState(10);
+    const [seconds, setSeconds] = React.useState(60);
 
     React.useEffect(() => {
         if (seconds > 0) {
