@@ -13,8 +13,11 @@ body{
 .css-bshv44-MuiButtonBase-root-MuiListItem-root{
   margin: 25px 0 !important;
 }
-.MuiPaper-root{
+/* .MuiPaper-root{
   background-color: rgba(77,77,77,0.2) !important;
+} */
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  background-color: rgba(77,77,77,0.2) !important; 
 }
 
 .home{

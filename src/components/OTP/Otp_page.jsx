@@ -3,7 +3,6 @@ import React from "react";
 import '../Registration/form.css'
 const Otp_page = (props) => {
   const {values,handleChange,handleSubmit,errors} = props;
-  console.log("params", values);
 
   return (
     // <div class="wrapper">
@@ -23,7 +22,7 @@ const Otp_page = (props) => {
                   onChange={handleChange}
                   value={values? values.email: ""}
                 />
-                {/* {errors.email && <p>{errors.email}</p>} */}
+                {errors.email && <p>{errors.email}</p>}
               </p>          
             <p>
                 <span className="input-label">OTP</span>
@@ -36,7 +35,7 @@ const Otp_page = (props) => {
                   onChange={handleChange}
                   value={values ? values.otp : ""}
                 />
-                {/* {errors.password && <p>{errors.password}</p>} */}
+                {errors.password && <p>{errors.password}</p>}
             </p>
             <p>
                 <input class="btn" type="submit" value="Verify" />

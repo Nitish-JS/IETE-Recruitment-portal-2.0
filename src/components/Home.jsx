@@ -27,7 +27,7 @@ function Home() {
   return (
     <div className="home">
       <Heading />
-      {localStorage.getItem("token") && localStorage.getItem("isLogin") ? (
+      {localStorage.getItem("token")  ? (
         <>
           <Button
             href="/ready"

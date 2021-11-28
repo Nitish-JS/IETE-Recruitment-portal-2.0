@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import { Redirect } from "react-router";
 const useForm = (callback,validate) => {
+    
     const[values,setValues]=useState({
         name: "",
         email:'',
@@ -35,7 +36,11 @@ const useForm = (callback,validate) => {
         const content = await response.json();
         console.log(content);
         setSubmitted(true);
-        setRedirect(true)
+        if(content.status===404)
+        {
+              localStorage.setItem('email-error',content.message);
+        }
+        // setRedirect(true)
     }
        if(redirect){
            return <Redirect to='/otp_login' />

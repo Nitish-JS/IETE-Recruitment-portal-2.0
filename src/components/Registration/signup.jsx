@@ -1,9 +1,22 @@
 import React from "react";
-import useForm from "./useForm";
-import validate from "./form_validation";
 const Signup = (props) => {
   const {values,handleChange,handleSubmit,errors} = props;
-  console.log("params", values);
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState) => () => {
+    setState({ open: true, ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+  // console.log("params", values);
 
   return (
     // <div class="wrapper">
@@ -23,7 +36,7 @@ const Signup = (props) => {
                   value={values ? values.name : ""}
                   name="name"
                 />
-                {/* {errors.name && <p>{errors.name}</p>} */}
+                {errors.name && <p>{errors.name}</p>}
               <p>
                 <span className="input-label">Email</span>
                 <input
@@ -35,7 +48,7 @@ const Signup = (props) => {
                   onChange={handleChange}
                   value={values? values.email: ""}
                 />
-                {/* {errors.email && <p>{errors.email}</p>} */}
+                {errors.email && <p>{errors.email}</p>}
               </p>
               
               </p>
@@ -50,7 +63,7 @@ const Signup = (props) => {
                   onChange={handleChange}
                   value={values ? values.password : ""}
                 />
-                {/* {errors.password && <p>{errors.password}</p>} */}
+                {errors.password && <p>{errors.password}</p>}
               </p>
 
               <p>
