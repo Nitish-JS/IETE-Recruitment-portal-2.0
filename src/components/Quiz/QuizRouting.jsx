@@ -4,11 +4,12 @@ import QuesRouting from './QuesRouting';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Container } from '@mui/material';
 
-import Home from '../Home';
-import Drawer from '../drawer';
-import { makeStyles } from '@mui/styles';
-import Routing from '../Routing';
+// import Home from '../Home';
+// import Drawer from '../drawer';
+// import { makeStyles } from '@mui/styles';
+// import Routing from '../Routing';
 import ProtectedRoute from './ProtectedRoutes';
+import EndQuiz from './EndQuiz'
 
 
 
@@ -19,8 +20,6 @@ const QuizRouting = (props) => {
                 <Switch>
                     <ProtectedRoute path="/ready" exact component={ReadyPage} />
                     <Route path="/quiz" component={QuesRouting} />
-                        {/* <QuesRouting />
-                    </Route>     */}
                 </Switch>
                 
                 

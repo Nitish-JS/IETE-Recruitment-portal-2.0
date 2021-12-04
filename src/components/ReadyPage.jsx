@@ -5,29 +5,6 @@ import { Typography, Container, Box, List, ListItemText } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
-// let token="Bearer "+JSON.parse(localStorage.getItem('token')).jwt;
-// console.log("TOKEN:", token);
-
-// const extract_ques = () => {
-//     fetch(
-//         "https://recportal-iete.herokuapp.com/auth/q/",
-//         {
-//             method: "POST",
-//             headers: { "Authorization":token, "Content-Type": "application/json" },
-//             body: JSON.stringify({
-//                 domain: 5
-//             }),
-            
-//         }
-//     )
-//     .then(response => response.json())
-//     .then(json => console.log("OBJECT FROM FETCH:",json))
-
-
-// }
-
-
-
 const theme = createTheme({
     status: {
       danger: '#e53e3e',

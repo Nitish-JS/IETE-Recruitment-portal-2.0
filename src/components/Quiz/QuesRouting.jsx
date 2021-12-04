@@ -3,6 +3,7 @@ import React from 'react';
 import Question from './Question';
 import NavQuiz from './NavQuiz';
 import Clock from './Clock';
+import EndQuiz from './EndQuiz';
 import { Container } from '@mui/material';
 
 
@@ -24,6 +25,10 @@ const QuesRouting = (props) => {
                 
                     <Route path = "/quiz/ques/:ques_id">
                         <Question />
+                    </Route>
+
+                    <Route path = "/endquiz">
+                        <EndQuiz />
                     </Route>
                 </div>
             </Router>

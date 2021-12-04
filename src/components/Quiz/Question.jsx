@@ -4,8 +4,8 @@ import question_json from '../../questions.json';
 import { Typography, Button, Box, Container, TextField} from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
-import { Link } from 'react-router-dom';
-import Loading from './Loading'
+import { Link, Redirect } from 'react-router-dom';
+import Loading from './Loading';
 
 
 const theme = createTheme({
@@ -70,7 +70,9 @@ const Question = () => {
         .then(response => response.json())
         .then(json => {
             setQuestions([...json.data])
-            // console.log("REACHED HERE: ",json.data)
+            console.log("REACHED HERE-FETCHED: ",json.data);
+            console.log("REACHED HERE-FETCHED: ",json);
+
         })
 
     },[])
@@ -82,16 +84,23 @@ const Question = () => {
     // console.log("AFTER USE STATE");
 
     
-
     // console.log("QUESTIONS: ",questions);
 
     let ques = {}
+    let nextQues = {}
+    let prevQues = {}
+    let present_index = 0;
     
 
     for (let i = 0; i< questions.length; i++){
         let q = questions[i];
         if (q.id == ques_id){
             ques = q;
+            present_index = i;
+            if (questions.length - 1 !== i)
+                nextQues = questions[i+1];
+            if (i !== 0)
+                prevQues = questions[i-1];
         }
     }
 
@@ -106,6 +115,7 @@ const Question = () => {
             ques.answer = "";
         }
     }
+    ques.submitted = false;
 
     var OptCol="blackOptions"
     var greenOption = -1;
@@ -250,9 +260,9 @@ const Question = () => {
 
                     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", padding: "5% 0%", width: "100%"}}>
 
-                        { (ques.id !== 1) &&
+                        { (present_index !== 0) &&
                             (
-                                <Link to={`/quiz/ques/${ques_id -1}`}>
+                                <Link to={`/quiz/ques/${prevQues.id}`}>
                                     <Button variant="text" color="greenUsed" sx={{ color: "white" }} >
                                         PREVIOUS QUESTION
                                     </Button>
@@ -262,13 +272,29 @@ const Question = () => {
 
                         <Button variant="contained" color="greenUsed" sx={{ color: "white"}} onClick={() => {
                             // API 
+                            ques.submitted = true;
+                            fetch(
+                                "https://recportal-iete.herokuapp.com/auth/sub/",
+                                {
+                                    method: "POST",
+                                    headers: { "Authorization":token, "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        question : ques.id,
+                                        ques_type : ques.ques_type,
+                                        option : ques.selected,
+                                        domain : 1
+                                    }),
+                                    
+                                }
+                            )
+                            // <Redirect to={`/quiz/ques/${parseInt(nextQues.id)}`} />
                         }}>
                             SUBMIT
                         </Button>
 
-                        { (ques.id !== question_arr.length) &&
+                        { (questions.length - 1 !== present_index) &&
                             (
-                                <Link to={`/quiz/ques/${parseInt(ques_id) +1}`}>
+                                <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                                     <Button variant="contained" color="greenUsed" sx={{ color: "white"}}>
                                         NEXT QUESTION
                                     </Button>
@@ -305,9 +331,9 @@ const Question = () => {
 
                 <Box sx={{ display: "flex",flexWrap: "wrap", justifyContent: "space-around", padding: "5% 0%"}}>
 
-                    { (ques.id !== 1) &&
+                    { (present_index !== 0) &&
                         (
-                            <Link to={`/quiz/ques/${ques_id -1}`}>
+                            <Link to={`/quiz/ques/${prevQues.id}`}>
                                 <Button variant="text" color="greenUsed" sx={{ color: "white" }}>
                                     PREVIOUS QUESTION
                                 </Button>
@@ -317,17 +343,51 @@ const Question = () => {
 
                     <Button variant="contained" color="greenUsed" sx={{ color: "white" }} onClick={() => {
                         // API 
+                        fetch(
+                            "https://recportal-iete.herokuapp.com/auth/sub/",
+                            {
+                                method: "POST",
+                                headers: { "Authorization":token, "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    question : ques.id,
+                                    ques_type : ques.ques_type,
+                                    option : ques.answer,
+                                    domain : 1
+                                }),
+                                
+                            }
+                        )
                     }}>
                         SUBMIT
                     </Button>
 
-                    { (ques.id !== question_arr.length) &&
+                    { (questions.length - 1 !== present_index) ?
                         (
-                            <Link to={`/quiz/ques/${parseInt(ques_id) +1}`}>
+                            <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                                 <Button variant="contained" color="greenUsed" sx={{ color: "white" }}>
                                     NEXT QUESTION
                                 </Button>
                             </Link>
+                        )
+                        :
+                        (
+                            <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+                                fetch(
+                                    "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                                    {
+                                        method: "POST",
+                                        headers: { "Authorization":token, "Content-Type": "application/json" },
+                                        body: JSON.stringify({
+                                            domain : 1
+                                        }),
+                                        
+                                    }
+                                )
+                            }
+
+                            } >
+                                SUBMIT TEST
+                            </Button>
                         )
                     }
                 </Box>
