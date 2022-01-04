@@ -1,0 +1,88 @@
+.domain-page{
+    background-image: url('../../images/Group\ 67.svg');
+    background-repeat: no-repeat;
+    background-position: left 100px bottom 200px;
+    width: 100%;
+}
+.domain-outer-div{
+    background-color:  rgba(77,77,77,0.2);
+    padding: 2%;
+    border-radius: 20px 20px 0 0;
+    width: 85vw;
+    margin-top: 5%;
+    
+
+}
+.domain-main-heading{
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+}
+.circle-card-left{
+    height: 200px;
+    width: 200px;
+    box-shadow: -10px -10px 10px rgba(102, 97, 97, 0.25),
+    10px 10px 10px rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    background-color: rgba(77, 77, 77, 0.08);
+
+    
+}
+.domain-description-right{
+    height: 200px;
+    width: 500px;
+    color: white;
+    box-shadow: -10px -10px 10px rgba(108, 104, 104, 0.13),
+    10px 10px 10px rgba(0, 0, 0, 0.41);
+    background: rgba(77, 77, 77, 0.11);
+    border-radius: 24px;
+    /* margin: 5% 0; */
+}
+.domain-description-right p{
+    padding: 5% 5% 0%;
+}
+.Button{
+    position: relative;
+    left: 40% !important;
+    background-color: #14CC7F !important;
+
+}
+.circle-card-left-image{
+    height: 199px;
+    width: 199px;
+    border-radius: 50%;
+
+}
+.domain-card{
+    display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-basis: 50%; 
+  margin: 5% 0;
+}
+@media only screen and (max-width: 600px){
+    .domain-outer-div{
+        margin-top: 30%;
+        width: 70vw;
+        overflow: hidden;
+    
+      }
+    .domain-description-right{
+        margin: 5% 0;
+        height: 275px;
+    }
+    .Button{
+        left: 30% !important;    
+    }
+    .domain-page{
+        background-position: left bottom 1500px;
+        /* background-repeat: repeat; */
+    }
+}
+/* .domain-page{
+    background-image: url('../../images/Ellipse\ 4.svg');
+    height: 100%;
+    width: 100%;
+   background-repeat: no-repeat;
+   background-position: left 750px bottom 750px;
+} */

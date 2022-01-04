@@ -1,0 +1,205 @@
+/* .makeStyles-container-1{
+    background-image: url("../../images/Group\ 67.svg") ;
+    background-position: left 100px bottom 200px;
+    background-repeat: no-repeat;
+    
+} */
+
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-class{
+  position: relative;
+  left: 20%;
+}
+.container {
+  /* position: relative; */
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: flex;
+  background: rgba(77,77,77,0.2);
+  /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
+  border-radius: 20px;
+
+}
+
+
+
+/* * * * * Login Form CSS * * * * */
+h2 {
+  margin: 0 0 15px 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 5%;
+}
+
+
+p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 7px 20px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #ffffff;
+  outline: none;
+  border: 1px solid #ffffff;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+.btn:hover {
+  color: #4caf50;
+  background: #ffffff;
+}
+
+.col-left {
+  width: 100%;
+  padding: 45px 35px;
+  display: flex;
+}
+
+.col-left {
+  width: 100%;
+}
+
+.wrapper{
+  background-image: url("../../images/Group\ 67.svg") ;
+  background-position: left  bottom ;
+  background-repeat: no-repeat;
+}
+@media (max-width: 575.98px) {
+   /* .makeStyles-container-1{
+    background-image: url("../../images/Group\ 67\ \(1\).svg") ;
+    background-position: left  bottom ;
+    background-repeat: no-repeat; 
+   } */
+   #Drawer{
+    width: 100px !important;
+
+   }
+   
+  .wrapper{
+    background-image: url("../../images/Group\ 67.svg") ;
+    background-position: left   ;
+    background-repeat: no-repeat;
+  }
+  .container {
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  .col-left {
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+   
+  }
+  .wrapper{
+    padding-right: 20px;
+  }
+}
+
+.login-text {
+  position: relative;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+}
+
+.login-form {
+  position: relative;
+  width: 100%;
+  color: #666666;
+}
+
+.login-form p:last-child {
+  margin: 0;
+}
+
+.login-form p a {
+  color: #4caf50;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login-form p:last-child a:last-child {
+  float: right;
+}
+
+.login-form label {
+  display: block;
+  width: 100%;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.input-label{
+  color: white;
+  position: relative;
+  left: 5%;
+}
+
+.login-form p:last-child label {
+  width: 60%;
+  float: left;
+}
+
+
+
+.login-form input {
+  display: block;
+  width: 90%;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  outline: none;
+  background: #14CC7F;
+  border-radius: 5px;
+  position: relative;
+  left: 5%;
+}
+
+
+
+.login-form input.btn {
+  color: #ffffff;
+  background: #14CC7F;
+  border-color: #14CC7F;
+  outline: none;
+  cursor: pointer;
+  width: 60%;
+  position: relative;
+  left: 22%;
+}
+
+.login-form input.btn:hover {
+  color: #14CC7F;
+  background: #ffffff;
+}
+
+.register-login{
+  position: relative;
+  left: 25%;
+}
