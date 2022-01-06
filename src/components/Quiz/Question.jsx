@@ -140,18 +140,21 @@ const Question = () => {
         console.log("Handle Change Called!");
         ques.answer = document.getElementById("longAnswer").value;
         console.log(ques.answer);
-    }
-
-    const handleFocusLQ = e => {
-        console.log("In Handle Focus");
         document.getElementById("longAnswer").value = ques.answer;
     }
+
+    // const handleFocusLQ = e => {
+    //     console.log("In Handle Focus");
+    //     // document.getElementById("longAnswer").value = ques.answer;
+    //     // place = document.getElementById("longAnswer").value;
+    //     var val = document.getElementById("longAnswer").value;
+    //     console.log(val);
+
+    // }
+    
     
     return(
-        // (!ques.ques_type)? 
-        //     <h1 style={{ color: "white" }}>Loading...</h1>
-        // : 
-
+        
         (ques.ques_type == 0) ? 
         <ThemeProvider theme={theme}>
             <Container sx={{ width: "70%" }}>
@@ -324,8 +327,9 @@ const Question = () => {
                         {ques.ques_main}
                     </Typography>
                     
-                    <Box sx={{ padding: "4%" }}>
-                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer" placeholder="Enter your answer here"  sx={{ background:"#212121", borderRadius: "10px", border: "none" }} onFocus={handleFocusLQ} onBlur={handleChangeLQ}></TextField>
+                    <Box sx={{ padding: "4%" }} id="longAnswerBox">
+                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer"  placeholder="Enter your answer" value={ ques.answer }   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
+                        {/* onChange  value */}
                     </Box>
                 </Box>
 
@@ -371,23 +375,25 @@ const Question = () => {
                         )
                         :
                         (
-                            <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
-                                fetch(
-                                    "https://recportal-iete.herokuapp.com/auth/testsubmit/",
-                                    {
-                                        method: "POST",
-                                        headers: { "Authorization":token, "Content-Type": "application/json" },
-                                        body: JSON.stringify({
-                                            domain : 1
-                                        }),
-                                        
-                                    }
-                                )
-                            }
+                            <Link to="/endquiz">
+                                <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+                                    fetch(
+                                        "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                                        {
+                                            method: "POST",
+                                            headers: { "Authorization":token, "Content-Type": "application/json" },
+                                            body: JSON.stringify({
+                                                domain : 1
+                                            }),
+                                            
+                                        }
+                                    )
+                                }
 
-                            } >
-                                SUBMIT TEST
-                            </Button>
+                                } >
+                                    SUBMIT TEST
+                                </Button>
+                            </Link>
                         )
                     }
                 </Box>

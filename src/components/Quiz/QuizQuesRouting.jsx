@@ -1,6 +1,6 @@
 // import React, {useState} from 'react';
 import React from 'react';
-import Question from './Question';
+import QuesRouting from './QuesRouting';
 import NavQuiz from './NavQuiz';
 import Clock from './Clock';
 import EndQuiz from './EndQuiz';
@@ -11,30 +11,25 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoutes';
 
-const QuesRouting = (props) => {
-    // const [step, setStep] = useState(1);
+const QuizQuesRouting = (props) => {
     
     return (
         <Container maxWidth="xl" style={{ background: "black", height: "100vh", overflow: "auto" }}>
             <Router>
                 <div style={{ display: "flex" }}>
-                    
-                
-                    <Route path = "/quiz/ques/:ques_id">
-                        <div style={{ width: "25%", paddingTop: "5%"}}>
-                            <Clock />
-                            <NavQuiz />
-                        </div>
-                        <Question />
-                    </Route>
-
-                    <Route path = "/endquiz">
-                        <EndQuiz />
-                    </Route>
+    
+                    <Switch>
+                        <Route path="/ques">
+                            <QuesRouting/>
+                        </Route>
+                        <Route path = "/endquiz">
+                            <EndQuiz />
+                        </Route>
+                    </Switch>
                 </div>
             </Router>
         </Container>
     )
 }
 
-export default QuesRouting
+export default QuizQuesRouting
