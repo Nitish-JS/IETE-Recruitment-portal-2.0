@@ -5,10 +5,7 @@ import Carousel_domain from "./Home/carousel";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { withRouter } from "react-router";
-<<<<<<< HEAD
 import Loading from './Quiz/Loading';
-=======
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 import "../App.css";
 const Auth = () => {
   let token="Bearer "+localStorage.getItem('token');
@@ -23,30 +20,17 @@ const Auth = () => {
   );
   const content = response.json();
   console.log(content);
-<<<<<<< HEAD
   
-=======
-  // localStorage.setItem("token", JSON.stringify(content));
-  // localStorage.setItem("isLogin", JSON.stringify(true));
-  // localStorage.getItem("token") ? setSubmitted(true) : setSubmitted(false);
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 };
 function Home() {
   return (
     <div className="home">
-<<<<<<< HEAD
         
-=======
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
       <Heading />
       {localStorage.getItem("token")  ? (
         <>
           <Button
-<<<<<<< HEAD
             href='/info'
-=======
-            href="/ready"
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
             className="take-test-button"
             variant="outlined"
             size="large"
@@ -54,11 +38,7 @@ function Home() {
           >
             Take Test
           </Button>
-<<<<<<< HEAD
   
-=======
-
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
           <Carousel_domain />
         </>
       ) : (
@@ -67,13 +47,9 @@ function Home() {
           <Carousel_domain />
         </>
       )}
-<<<<<<< HEAD
       <loader />
     </div>
     
-=======
-    </div>
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
   );
 }
 
