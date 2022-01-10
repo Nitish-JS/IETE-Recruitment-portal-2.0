@@ -37,6 +37,8 @@ try{
 
 const NavQuiz = () => {
 
+    const [force,setForce] = useState(true);
+
     let question_arr = [];
     const [questions, setQuestions] = useState(question_arr);
 
@@ -62,6 +64,13 @@ const NavQuiz = () => {
 
     // console.log("QUESTIONS: ",questions);
 
+
+    // for (var i = 0; i<10; i=i+0){
+    //     setTimeout((
+    //         setForce(!force)
+    //     ),1000)
+    // }
+
     return (
         (questions !== undefined) ?
             <ThemeProvider theme={theme}>
@@ -80,7 +89,7 @@ const NavQuiz = () => {
                             if (ques.submitted === true){
                                 return(
                                     <Link key={key+1} to={`/quiz/ques/${ques.id}`} style={{ margin: "10% 2%" }}>
-                                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}} > 
+                                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}} style={{boxShadow: '5px 5px 10px #009254'}}> 
                                             <Typography color="white"> {key+1} </Typography>
                                         </Button>
                                     </Link>
@@ -88,7 +97,7 @@ const NavQuiz = () => {
                             } else {
                                 return(
                                     <Link key={key+1} to={`/quiz/ques/${ques.id}`} style={{ margin: "15% 2%" }}>
-                                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}} style={{boxShadow: '5px 5px 10px #009254'}}> 
+                                        <Button color="darkGrey" variant="contained" sx={{ width: "10%", height: "180%", borderRadius: "10px"}} style={{boxShadow: '5px 5px 10px #e53e3e'}}> 
                                             <Typography color="white"> {key+1} </Typography>
                                         </Button>
                                     </Link>

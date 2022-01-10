@@ -35,6 +35,10 @@ const theme = createTheme({
 
 const EndQuiz = () => {
     console.log("INSIDE ENDQUIZ");
+
+    let ans=0;
+    let not_ans=0;
+
     return (
         <ThemeProvider theme={ theme }>
             <Container sx={{ width: "90%" }}>

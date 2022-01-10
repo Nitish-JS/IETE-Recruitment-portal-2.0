@@ -6,7 +6,7 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import { Link, Redirect } from 'react-router-dom';
 import Loading from './Loading';
-
+import NavQuiz from './NavQuiz'
 
 const theme = createTheme({
   status: {
@@ -90,6 +90,8 @@ const Question = () => {
     let nextQues = {}
     let prevQues = {}
     let present_index = 0;
+    let ans=0;
+    let not_ans = questions.length;
     
 
     for (let i = 0; i< questions.length; i++){
@@ -266,7 +268,7 @@ const Question = () => {
                         { (present_index !== 0) &&
                             (
                                 <Link to={`/quiz/ques/${prevQues.id}`}>
-                                    <Button variant="text" color="greenUsed" sx={{ color: "white" }} >
+                                    <Button variant="text" color="greenUsed" sx={{ color: "white" }}>
                                         PREVIOUS QUESTION
                                     </Button>
                                 </Link>
@@ -276,6 +278,8 @@ const Question = () => {
                         <Button variant="contained" color="greenUsed" sx={{ color: "white"}} onClick={() => {
                             // API 
                             ques.submitted = true;
+                            ans++;
+                            not_ans--;
                             fetch(
                                 "https://recportal-iete.herokuapp.com/auth/sub/",
                                 {
@@ -295,7 +299,7 @@ const Question = () => {
                             SUBMIT
                         </Button>
 
-                        { (questions.length - 1 !== present_index) &&
+                        { (questions.length - 1 !== present_index) ?
                             (
                                 <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                                     <Button variant="contained" color="greenUsed" sx={{ color: "white"}}>
@@ -303,7 +307,29 @@ const Question = () => {
                                     </Button>
                                 </Link>
                             )
-                        }
+                            :
+                            (
+                                <Link to={`/endquiz/${ans}/${not_ans}`}>
+                                    <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+                                        fetch(
+                                            "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                                            {
+                                                method: "POST",
+                                                headers: { "Authorization":token, "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    domain : 1
+                                                }),
+                                                
+                                            }
+                                        )
+                                    }
+
+                                    } >
+                                        SUBMIT TEST
+                                    </Button>
+                                </Link>
+                            )
+                            }
                     </Box>
                 </div>
             </Container>
@@ -346,6 +372,10 @@ const Question = () => {
                     }
 
                     <Button variant="contained" color="greenUsed" sx={{ color: "white" }} onClick={() => {
+                        
+                        ans++;
+                        not_ans--;
+
                         // API 
                         fetch(
                             "https://recportal-iete.herokuapp.com/auth/sub/",
@@ -375,7 +405,8 @@ const Question = () => {
                         )
                         :
                         (
-                            <Link to="/endquiz">
+                            // <Link to={`/endquiz/${ans}/${not_ans}`}>
+                            <Link to={`/endquiz`}>
                                 <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
                                     fetch(
                                         "https://recportal-iete.herokuapp.com/auth/testsubmit/",

@@ -31,6 +31,10 @@ const QuesRouting = (props) => {
                     <Route path = "/endquiz">
                         <EndQuiz />
                     </Route>
+
+                    {/* <Route path = "/endquiz/:ans/:not-ans">
+                        <EndQuiz />
+                    </Route> */}
                 </div>
             </Router>
         </Container>
