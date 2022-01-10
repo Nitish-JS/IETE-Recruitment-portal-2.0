@@ -4,9 +4,9 @@ import question_json from '../../questions.json';
 import { Typography, Button, Box, Container, TextField} from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
-import { Link } from 'react-router-dom';
-import Loading from './Loading'
-
+import { Link, Redirect } from 'react-router-dom';
+import Loading from './Loading';
+import NavQuiz from './NavQuiz'
 
 const theme = createTheme({
   status: {
@@ -70,7 +70,9 @@ const Question = () => {
         .then(response => response.json())
         .then(json => {
             setQuestions([...json.data])
-            // console.log("REACHED HERE: ",json.data)
+            console.log("REACHED HERE-FETCHED: ",json.data);
+            console.log("REACHED HERE-FETCHED: ",json);
+
         })
 
     },[])
@@ -82,16 +84,25 @@ const Question = () => {
     // console.log("AFTER USE STATE");
 
     
-
     // console.log("QUESTIONS: ",questions);
 
     let ques = {}
+    let nextQues = {}
+    let prevQues = {}
+    let present_index = 0;
+    let ans=0;
+    let not_ans = questions.length;
     
 
     for (let i = 0; i< questions.length; i++){
         let q = questions[i];
         if (q.id == ques_id){
             ques = q;
+            present_index = i;
+            if (questions.length - 1 !== i)
+                nextQues = questions[i+1];
+            if (i !== 0)
+                prevQues = questions[i-1];
         }
     }
 
@@ -106,6 +117,7 @@ const Question = () => {
             ques.answer = "";
         }
     }
+    ques.submitted = false;
 
     var OptCol="blackOptions"
     var greenOption = -1;
@@ -130,18 +142,21 @@ const Question = () => {
         console.log("Handle Change Called!");
         ques.answer = document.getElementById("longAnswer").value;
         console.log(ques.answer);
-    }
-
-    const handleFocusLQ = e => {
-        console.log("In Handle Focus");
         document.getElementById("longAnswer").value = ques.answer;
     }
+
+    // const handleFocusLQ = e => {
+    //     console.log("In Handle Focus");
+    //     // document.getElementById("longAnswer").value = ques.answer;
+    //     // place = document.getElementById("longAnswer").value;
+    //     var val = document.getElementById("longAnswer").value;
+    //     console.log(val);
+
+    // }
+    
     
     return(
-        // (!ques.ques_type)? 
-        //     <h1 style={{ color: "white" }}>Loading...</h1>
-        // : 
-
+        
         (ques.ques_type == 0) ? 
         <ThemeProvider theme={theme}>
             <Container sx={{ width: "70%" }}>
@@ -250,10 +265,10 @@ const Question = () => {
 
                     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", padding: "5% 0%", width: "100%"}}>
 
-                        { (ques.id !== 1) &&
+                        { (present_index !== 0) &&
                             (
-                                <Link to={`/quiz/ques/${ques_id -1}`}>
-                                    <Button variant="text" color="greenUsed" sx={{ color: "white" }} >
+                                <Link to={`/quiz/ques/${prevQues.id}`}>
+                                    <Button variant="text" color="greenUsed" sx={{ color: "white" }}>
                                         PREVIOUS QUESTION
                                     </Button>
                                 </Link>
@@ -262,19 +277,59 @@ const Question = () => {
 
                         <Button variant="contained" color="greenUsed" sx={{ color: "white"}} onClick={() => {
                             // API 
+                            ques.submitted = true;
+                            ans++;
+                            not_ans--;
+                            fetch(
+                                "https://recportal-iete.herokuapp.com/auth/sub/",
+                                {
+                                    method: "POST",
+                                    headers: { "Authorization":token, "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        question : ques.id,
+                                        ques_type : ques.ques_type,
+                                        option : ques.selected,
+                                        domain : 1
+                                    }),
+                                    
+                                }
+                            )
+                            // <Redirect to={`/quiz/ques/${parseInt(nextQues.id)}`} />
                         }}>
                             SUBMIT
                         </Button>
 
-                        { (ques.id !== question_arr.length) &&
+                        { (questions.length - 1 !== present_index) ?
                             (
-                                <Link to={`/quiz/ques/${parseInt(ques_id) +1}`}>
+                                <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                                     <Button variant="contained" color="greenUsed" sx={{ color: "white"}}>
                                         NEXT QUESTION
                                     </Button>
                                 </Link>
                             )
-                        }
+                            :
+                            (
+                                <Link to={`/endquiz/${ans}/${not_ans}`}>
+                                    <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+                                        fetch(
+                                            "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                                            {
+                                                method: "POST",
+                                                headers: { "Authorization":token, "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    domain : 1
+                                                }),
+                                                
+                                            }
+                                        )
+                                    }
+
+                                    } >
+                                        SUBMIT TEST
+                                    </Button>
+                                </Link>
+                            )
+                            }
                     </Box>
                 </div>
             </Container>
@@ -298,16 +353,17 @@ const Question = () => {
                         {ques.ques_main}
                     </Typography>
                     
-                    <Box sx={{ padding: "4%" }}>
-                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer" placeholder="Enter your answer here"  sx={{ background:"#212121", borderRadius: "10px", border: "none" }} onFocus={handleFocusLQ} onBlur={handleChangeLQ}></TextField>
+                    <Box sx={{ padding: "4%" }} id="longAnswerBox">
+                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer"  placeholder="Enter your answer" value={ ques.answer }   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
+                        {/* onChange  value */}
                     </Box>
                 </Box>
 
                 <Box sx={{ display: "flex",flexWrap: "wrap", justifyContent: "space-around", padding: "5% 0%"}}>
 
-                    { (ques.id !== 1) &&
+                    { (present_index !== 0) &&
                         (
-                            <Link to={`/quiz/ques/${ques_id -1}`}>
+                            <Link to={`/quiz/ques/${prevQues.id}`}>
                                 <Button variant="text" color="greenUsed" sx={{ color: "white" }}>
                                     PREVIOUS QUESTION
                                 </Button>
@@ -316,16 +372,57 @@ const Question = () => {
                     }
 
                     <Button variant="contained" color="greenUsed" sx={{ color: "white" }} onClick={() => {
+                        
+                        ans++;
+                        not_ans--;
+
                         // API 
+                        fetch(
+                            "https://recportal-iete.herokuapp.com/auth/sub/",
+                            {
+                                method: "POST",
+                                headers: { "Authorization":token, "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    question : ques.id,
+                                    ques_type : ques.ques_type,
+                                    option : ques.answer,
+                                    domain : 1
+                                }),
+                                
+                            }
+                        )
                     }}>
                         SUBMIT
                     </Button>
 
-                    { (ques.id !== question_arr.length) &&
+                    { (questions.length - 1 !== present_index) ?
                         (
-                            <Link to={`/quiz/ques/${parseInt(ques_id) +1}`}>
+                            <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                                 <Button variant="contained" color="greenUsed" sx={{ color: "white" }}>
                                     NEXT QUESTION
+                                </Button>
+                            </Link>
+                        )
+                        :
+                        (
+                            // <Link to={`/endquiz/${ans}/${not_ans}`}>
+                            <Link to={`/endquiz`}>
+                                <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+                                    fetch(
+                                        "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                                        {
+                                            method: "POST",
+                                            headers: { "Authorization":token, "Content-Type": "application/json" },
+                                            body: JSON.stringify({
+                                                domain : 1
+                                            }),
+                                            
+                                        }
+                                    )
+                                }
+
+                                } >
+                                    SUBMIT TEST
                                 </Button>
                             </Link>
                         )

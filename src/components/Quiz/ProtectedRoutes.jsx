@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {Route,Redirect,withRouter} from 'react-router-dom';
 import Home from '../Home';
 import ReadyPage from '../ReadyPage';
 import Routing from '../Routing';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router';
-import { Snackbar } from '@mui/material';
-import { Alert } from '@mui/material';
 const useStyles=makeStyles({
     container:{
       display: "flex"
     }
   });
 
-// const ProtectedRoute = ({children,...rest}) => {
 const ProtectedRoute = (props) => {
-  
-  // const token=localStorage.getItem('token')
-  // return(
-  //   <Route render={() =>token? (props.component):(<Redirect to={'/'} />) } />
-  // )
-    
+    const history=useHistory();
     const classes=useStyles();
     const token=localStorage.getItem('token');
     if(token)

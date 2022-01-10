@@ -1,5 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 const Signup = (props) => {
   const {values,handleChange,handleSubmit,errors} = props;
   const [state, setState] = React.useState({
@@ -27,7 +30,11 @@ const Signup = (props) => {
             <h2>Register Here</h2>
             <form onSubmit={handleSubmit} >
             <p>
+<<<<<<< HEAD
                 <span className="input-label">Name</span>
+=======
+                <span className="input-label">Username</span>
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
                 <input
                   id="name"
                   type="text"
@@ -37,7 +44,11 @@ const Signup = (props) => {
                   value={values ? values.name : ""}
                   name="name"
                 />
+<<<<<<< HEAD
                 {/* {errors.name && <p>{errors.name}</p>} */}
+=======
+                {errors.name && <p>{errors.name}</p>}
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
               <p>
                 <span className="input-label">Email</span>
                 <input
@@ -49,7 +60,11 @@ const Signup = (props) => {
                   onChange={handleChange}
                   value={values? values.email: ""}
                 />
+<<<<<<< HEAD
                 {/* {errors.email && <p>{errors.email}</p>} */}
+=======
+                {errors.email && <p>{errors.email}</p>}
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
               </p>
               
               </p>
@@ -64,7 +79,11 @@ const Signup = (props) => {
                   onChange={handleChange}
                   value={values ? values.password : ""}
                 />
+<<<<<<< HEAD
                 {/* {errors.password && <p>{errors.password}</p>} */}
+=======
+                {errors.password && <p>{errors.password}</p>}
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
               </p>
 
               <p>
@@ -96,7 +115,11 @@ const Signup = (props) => {
                 <input class="btn" type="submit" value="Sign In" />
               </p>
               <span className="register-login">
+<<<<<<< HEAD
                 Already Registered? <Link to="/login">Login</Link>
+=======
+                Already Registered? <a href="/login">Login</a>
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
               </span>
             </form>
           </div>

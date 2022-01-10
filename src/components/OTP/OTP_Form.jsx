@@ -4,17 +4,27 @@ import validate from "./Otp_validation";
 import { Redirect } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { Snackbar } from "@mui/material";
+<<<<<<< HEAD
 import Loading from "../Quiz/Loading";
 
 const OTP_Form = () => {
   const [values, setValues] = useState({
     email: localStorage.getItem('email'),
+=======
+
+const OTP_Form = () => {
+  const [values, setValues] = useState({
+    email: "",
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
     otp: "",
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [otpError, setOtpError] = useState(null);
+<<<<<<< HEAD
   const [loading, setLoading] = useState(false);
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 
   const [state, setState] = React.useState({
     open: false,
@@ -41,11 +51,17 @@ const OTP_Form = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     setLoading(true);
 
     setState({ ...state, open: true });
 
     // setErrors(validate(values));
+=======
+    setState({ ...state, open: true });
+
+    setErrors(validate(values));
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
     // console.log(values);
     const response = await fetch(
       "https://recportal-iete.herokuapp.com/auth/verifyotp/",
@@ -58,7 +74,10 @@ const OTP_Form = () => {
     const content = await response.json();
     console.log(content);
     if (content.status === 403) {
+<<<<<<< HEAD
       setLoading(false);
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
       setOtpError(content.message);
     }
     if (content.status === 200) {
@@ -90,6 +109,7 @@ const OTP_Form = () => {
           </Alert>
         </Snackbar>
       )}
+<<<<<<< HEAD
       {loading ? (
         <Loading />
       ) : (
@@ -100,6 +120,14 @@ const OTP_Form = () => {
           errors={errors}
         />
       )}
+=======
+      <Otp_page
+        values={values}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        errors={errors}
+      />
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
     </div>
   );
 };

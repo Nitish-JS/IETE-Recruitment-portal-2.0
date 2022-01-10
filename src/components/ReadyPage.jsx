@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React,{useState, useEffect } from 'react';
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 import {Link} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Typography, Container, Box, List, ListItemText } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
+<<<<<<< HEAD
 // let token="Bearer "+JSON.parse(localStorage.getItem('token')).jwt;
 // console.log("TOKEN:", token);
 
@@ -28,6 +33,8 @@ import { ThemeProvider } from '@emotion/react';
 
 
 
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 const theme = createTheme({
     status: {
       danger: '#e53e3e',
@@ -50,8 +57,64 @@ const theme = createTheme({
     ].join(','),
 });
 
+<<<<<<< HEAD
 const ReadyPage = () => {
     return (
+=======
+let token = "";
+let duration = 0;
+
+try{
+    token="Bearer "+JSON.parse(localStorage.getItem('token')).jwt;
+} catch (error) {
+    console.log(error);
+}
+
+const ReadyPage = () => {
+
+    const [submitted, setSubmitted] = useState(false);
+    const [duration, setDuration] = useState(false);
+
+    useEffect( async () => {
+        await fetch(
+            "https://recportal-iete.herokuapp.com/auth/q/",
+            {
+                method: "POST",
+                headers: { "Authorization":token, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    domain: 1
+                }),
+            }
+        )
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            console.log(json.message)
+            console.log("SUBMITTED: ",submitted);
+            if (json.message === "Test Submitted"){
+                console.log("Inside Submitted");
+                setSubmitted(true);
+            } else {
+                setDuration(json.totalduration);
+            }           
+            console.log("SUBMITTED: ",submitted);
+        })
+    })
+
+    return (
+        
+        (submitted === true) ? 
+            <ThemeProvider theme= {theme}>
+                <Typography variant="h3" align="center" gutterBottom color="white" sx={{ fontFamily: "Monument Extended", margin: "15% 0% 5% 0%" }}>
+                    THANK YOU FOR YOUR RESPONSE
+                </Typography>
+
+                <Typography variant="h4" align="center" color="#4ECB71" gutterBottom sx={{ fontFamily: "Poppins", margin: "5% 0% 5% 0%" }}>
+                    Hope to see you in the next round ;)
+                </Typography>
+            </ThemeProvider>
+        :
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
         <ThemeProvider theme= {theme}>
             
             <Container maxWidth="xxl" sx={{ background: "black", padding: "5% 3% 2% 3%", width: "100%"}}>
@@ -65,7 +128,11 @@ const ReadyPage = () => {
                         Instructions
                     </Typography>
                     <Typography variant="h6" gutterBottom sx={{ fontFamily: "Monument Extended" }}>
+<<<<<<< HEAD
                         TIME: 45.00 MIN
+=======
+                        TIME: {duration} MIN
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
                     </Typography> 
                 </Box>
 
@@ -84,9 +151,12 @@ const ReadyPage = () => {
                     <ListItemText sx={{ padding: "2%" }}>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus provident, temporibus commodi id quam nobis. Sit ab impedit voluptatibus, laboriosam rerum neque et nulla eveniet!
                     </ListItemText>
+<<<<<<< HEAD
                     {/* <ListItemText sx={{ padding: "2%" }}>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus provident, temporibus commodi id quam nobis. Sit ab impedit voluptatibus, laboriosam rerum neque et nulla eveniet!
                     </ListItemText> */}
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
                 </List>
 
                 <Link to="/quiz/ques/1" >

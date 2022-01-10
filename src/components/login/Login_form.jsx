@@ -3,7 +3,11 @@ import useForm from "./useForm";
 import validate from "./login_form_validation";
 import { Snackbar } from "@mui/material";
 import { Alert } from "@mui/material";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 const Login_form = (props) => {
   const { values, handleChange, handleSubmit, errors } = props;
   // console.log("params", values);
@@ -40,7 +44,11 @@ const Login_form = (props) => {
                 onChange={handleChange}
                 value={values ? values.email : ""}
               />
+<<<<<<< HEAD
               {/* {errors.email && <p>{errors.email}</p>} */}
+=======
+              {errors.email && <p>{errors.email}</p>}
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
             </p>
             <p>
               <span className="input-label">Password</span>
@@ -53,7 +61,11 @@ const Login_form = (props) => {
                 onChange={handleChange}
                 value={values ? values.password : ""}
               />
+<<<<<<< HEAD
               {/* {errors.password && <p>{errors.password}</p>} */}
+=======
+              {errors.password && <p>{errors.password}</p>}
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
             </p>
             <p>
               <input
@@ -69,7 +81,11 @@ const Login_form = (props) => {
            
 
             <span className="register-login">
+<<<<<<< HEAD
               Not Registered? <Link to='/signup'>Signup</Link>
+=======
+              Already Registered? <a href="/login">Login</a>
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
             </span>
           </form>
         </div>

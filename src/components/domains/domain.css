@@ -1,17 +1,23 @@
+<<<<<<< HEAD
 .domain-page{
     background-image: url('../../images/Group\ 67.svg');
     background-repeat: no-repeat;
     background-position: left 100px bottom 200px;
     width: 100%;
 }
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 .domain-outer-div{
     background-color:  rgba(77,77,77,0.2);
     padding: 2%;
     border-radius: 20px 20px 0 0;
     width: 85vw;
     margin-top: 5%;
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 }
 .domain-main-heading{
     text-align: center;
@@ -29,13 +35,19 @@
     
 }
 .domain-description-right{
+<<<<<<< HEAD
     height: 200px;
     width: 500px;
     color: white;
+=======
+    height: 80px;
+    width: 500px;
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
     box-shadow: -10px -10px 10px rgba(108, 104, 104, 0.13),
     10px 10px 10px rgba(0, 0, 0, 0.41);
     background: rgba(77, 77, 77, 0.11);
     border-radius: 24px;
+<<<<<<< HEAD
     /* margin: 5% 0; */
 }
 .domain-description-right p{
@@ -46,6 +58,9 @@
     left: 40% !important;
     background-color: #14CC7F !important;
 
+=======
+    margin: 5% 0;
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 }
 .circle-card-left-image{
     height: 199px;
@@ -60,6 +75,7 @@
   flex-basis: 50%; 
   margin: 5% 0;
 }
+<<<<<<< HEAD
 @media only screen and (max-width: 600px){
     .domain-outer-div{
         margin-top: 30%;
@@ -79,6 +95,9 @@
         /* background-repeat: repeat; */
     }
 }
+=======
+
+>>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
 /* .domain-page{
     background-image: url('../../images/Ellipse\ 4.svg');
     height: 100%;
