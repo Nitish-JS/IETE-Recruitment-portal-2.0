@@ -1,21 +1,4 @@
 import React,{useState, useEffect} from 'react';
-<<<<<<< HEAD
-
-const Clock = () =>  {
-    const [seconds, setSeconds] = React.useState(60);
-
-    React.useEffect(() => {
-        if (seconds > 0) {
-        setTimeout(() => setSeconds(seconds - 1), 1000);
-        } else {
-        setSeconds('TIME OVER!');
-        }
-    });
-
-    return (
-        <div>
-            <h1 style={{ color: "white", background: "#009254", textAlign: "center", margin: "10%", padding: "7%", borderRadius: "20px" }}>{seconds}</h1>
-=======
 import EndQuiz from './EndQuiz';
 import {Link, Redirect} from 'react-router-dom';
 
@@ -77,7 +60,6 @@ const Clock = () =>  {
     return (
         <div>
             <h1 style={{ color: "white", background: "#009254", textAlign: "center", margin: "10%", padding: "7%", borderRadius: "20px" }}>{Math.floor(seconds/60)} : {(seconds%60)}</h1>
->>>>>>> 747870b38515ef1779bcf46fe11f813705211a50
             {/* <h1 style={{ color: "white" }}>Clock</h1> */}
         </div>
     )
