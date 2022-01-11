@@ -9,11 +9,14 @@ import { Container } from '@mui/material';
 // import { makeStyles } from '@mui/styles';
 // import Routing from '../Routing';
 import ProtectedRoute from './ProtectedRoutes';
-import EndQuiz from './EndQuiz'
+import EndQuiz from './EndQuiz';
 
 
 
 const QuizRouting = (props) => {
+
+    
+
     return (
         <Container maxWidth="xl" style={{ background: "black", height: "100vh", overflow: "auto" }}>
             <Router>

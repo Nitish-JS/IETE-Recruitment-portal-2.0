@@ -354,7 +354,7 @@ const Question = () => {
                     </Typography>
                     
                     <Box sx={{ padding: "4%" }} id="longAnswerBox">
-                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer"  placeholder="Enter your answer" value={ ques.answer }   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
+                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer" defaultValue={ ques.answer }   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
                         {/* onChange  value */}
                     </Box>
                 </Box>
