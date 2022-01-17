@@ -56,12 +56,13 @@ const OTP_Form = () => {
       }
     );
     const content = await response.json();
+    console.log(response);
     console.log(content);
     if (content.status === 403) {
       setLoading(false);
       setOtpError(content.message);
     }
-    if (content.status === 200) {
+    if (response.status === 200) {
       setSubmitted(true);
     }
   };
