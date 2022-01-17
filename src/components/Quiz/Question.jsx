@@ -43,39 +43,43 @@ try{
     console.log(error);
 }
 
-const Question = () => {
+const Question = (props) => {
 
     const { ques_id } = useParams();
 
     // let question_arr = JSON.parse(JSON.stringify(question_json));
-    let question_arr = [];
+    // let question_arr = [];
 
-    const [questions, setQuestions] = useState(question_arr);
+    const [questions, setQuestions] = useState(props.questions);
+
+    console.log("PROPS IN QUESTIONS:",props.questions);
     const [force,setForce] = useState(true);
 
-    // console.log("BEFORE USE STATE");
+    console.log("BEFORE USE STATE");
 
-    useEffect(async () => {
-        await fetch(
-            "https://recportal-iete.herokuapp.com/auth/q/",
-            {
-                method: "POST",
-                headers: { "Authorization":token, "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    domain: 1
-                }),
+    // useEffect(async () => {
+    //     await fetch(
+    //         "https://recportal-iete.herokuapp.com/auth/q/",
+    //         {
+    //             method: "POST",
+    //             headers: { "Authorization":token, "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 domain: 1
+    //             }),
                 
-            }
-        )
-        .then(response => response.json())
-        .then(json => {
-            setQuestions([...json.data])
-            console.log("REACHED HERE-FETCHED: ",json.data);
-            console.log("REACHED HERE-FETCHED: ",json);
+    //         }
+    //     )
+    //     .then(response => response.json())
+    //     .then(json => {
+    //         setQuestions([...json.data])
+    //         console.log("REACHED HERE-FETCHED: ",json.data);
+    //         console.log("REACHED HERE-FETCHED: ",json);
 
-        })
+    //     })
 
-    },[])
+    // },[])
+
+
 
 
     useEffect(() => {
@@ -311,6 +315,9 @@ const Question = () => {
                             (
                                 <Link to={`/endquiz/${ans}/${not_ans}`}>
                                     <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
+
+                                        props.handleChange(ques_id);
+
                                         fetch(
                                             "https://recportal-iete.herokuapp.com/auth/testsubmit/",
                                             {
@@ -354,7 +361,7 @@ const Question = () => {
                     </Typography>
                     
                     <Box sx={{ padding: "4%" }} id="longAnswerBox">
-                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer" defaultValue={ ques.answer }   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
+                        <TextField color="whiteUsed" variant="outlined" multiline rows={10} fullWidth  id="longAnswer" defaultValue={ ques.answer } placeholder="Answer"   sx={{ background:"#009254", borderRadius: "10px", border: "#009254" }} onChange={ handleChangeLQ }></TextField> 
                         {/* onChange  value */}
                     </Box>
                 </Box>
@@ -375,6 +382,8 @@ const Question = () => {
                         
                         ans++;
                         not_ans--;
+
+                        props.handleChange(ques_id);
 
                         // API 
                         fetch(

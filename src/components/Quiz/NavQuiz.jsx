@@ -35,32 +35,32 @@ try{
     console.log(error);
 }
 
-const NavQuiz = () => {
+const NavQuiz = (props) => {
 
     const [force,setForce] = useState(true);
 
     let question_arr = [];
-    const [questions, setQuestions] = useState(question_arr);
+    const [questions, setQuestions] = useState(props.questions);
 
-    useEffect(async () => {
-        await fetch(
-            "https://recportal-iete.herokuapp.com/auth/q/",
-            {
-                method: "POST",
-                headers: { "Authorization":token, "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    domain: 1
-                }),  
-            }
-        )
-        .then(response => response.json())
-        .then(json => {
-            setQuestions([...json.data])
-            console.log("QUESTIONS: ",questions);
-            // console.log("REACHED HERE-FETCHED: ",json.data)
-        })
+    // useEffect(async () => {
+    //     await fetch(
+    //         "https://recportal-iete.herokuapp.com/auth/q/",
+    //         {
+    //             method: "POST",
+    //             headers: { "Authorization":token, "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 domain: 1
+    //             }),  
+    //         }
+    //     )
+    //     .then(response => response.json())
+    //     .then(json => {
+    //         setQuestions([...json.data])
+    //         console.log("QUESTIONS: ",questions);
+    //         // console.log("REACHED HERE-FETCHED: ",json.data)
+    //     })
 
-    },[])
+    // },[])
 
     // console.log("QUESTIONS: ",questions);
 

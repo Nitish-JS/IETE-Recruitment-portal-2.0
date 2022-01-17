@@ -15,8 +15,6 @@ import EndQuiz from './EndQuiz';
 
 const QuizRouting = (props) => {
 
-    
-
     return (
         <Container maxWidth="xl" style={{ background: "black", height: "100vh", overflow: "auto" }}>
             <Router>
@@ -24,8 +22,6 @@ const QuizRouting = (props) => {
                     <ProtectedRoute path="/ready" exact component={ReadyPage} />
                     <Route path="/quiz" component={QuesRouting} />
                 </Switch>
-                
-                
             </Router>
         </Container>
     )
