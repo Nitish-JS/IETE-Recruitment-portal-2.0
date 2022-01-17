@@ -293,7 +293,7 @@ const Question = (props) => {
                                         question : ques.id,
                                         ques_type : ques.ques_type,
                                         option : ques.selected,
-                                        domain : 1
+                                        domain : localStorage.getItem("domain")
                                     }),
                                     
                                 }
@@ -324,7 +324,7 @@ const Question = (props) => {
                                                 method: "POST",
                                                 headers: { "Authorization":token, "Content-Type": "application/json" },
                                                 body: JSON.stringify({
-                                                    domain : 1
+                                                    domain : localStorage.getItem("domain")
                                                 }),
                                                 
                                             }
@@ -395,7 +395,7 @@ const Question = (props) => {
                                     question : ques.id,
                                     ques_type : ques.ques_type,
                                     option : ques.answer,
-                                    domain : 1
+                                    domain : localStorage.getItem("domain")
                                 }),
                                 
                             }
@@ -423,7 +423,7 @@ const Question = (props) => {
                                             method: "POST",
                                             headers: { "Authorization":token, "Content-Type": "application/json" },
                                             body: JSON.stringify({
-                                                domain : 1
+                                                domain : localStorage.getItem("domain")
                                             }),
                                             
                                         }

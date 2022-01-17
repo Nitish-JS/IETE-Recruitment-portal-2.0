@@ -41,7 +41,7 @@ const QuesRouting = (props) => {
                 method: "POST",
                 headers: { "Authorization":token, "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    domain: 1
+                    domain: localStorage.getItem("domain")
                 }),
                 
             }
@@ -49,7 +49,7 @@ const QuesRouting = (props) => {
         .then(response => response.json())
         .then(json => {
             setQuestions([...json.data])
-            
+
             // totalDuration = json.totalduration;
             // startTime = json.starttime;
             // // console.log("TOTAL DURATION:",totalDuration);
