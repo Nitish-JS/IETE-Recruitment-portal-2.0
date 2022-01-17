@@ -10,7 +10,7 @@ try{
     console.log(error);
 }
 
-const Clock = () =>  {
+const Clock = (props) =>  {
     const [seconds, setSeconds] = React.useState();
 
     useEffect(async () => {
@@ -27,6 +27,7 @@ const Clock = () =>  {
         )
         .then(response => response.json())
         .then(json => {
+            console.log("RESPONSE: ",json);
             setSeconds(json.totalduration * 60);
         })
     },[])
@@ -36,6 +37,7 @@ const Clock = () =>  {
             setTimeout(() => setSeconds(seconds - 1), 1000);
         } else {
             // return <Redirect to="/endquiz" />
+            props.handleClock();
             setSeconds('TIME OVER!');
             
         }
