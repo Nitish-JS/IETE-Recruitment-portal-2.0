@@ -50,45 +50,17 @@ const Question = (props) => {
     // let question_arr = JSON.parse(JSON.stringify(question_json));
     // let question_arr = [];
 
-    const [questions, setQuestions] = useState(props.questions);
+    const [questions, setQuestions] = useState(JSON.parse(JSON.stringify(props.questions)));
 
     console.log("PROPS IN QUESTIONS:",props.questions);
     const [force,setForce] = useState(true);
 
     console.log("BEFORE USE STATE");
 
-    // useEffect(async () => {
-    //     await fetch(
-    //         "https://recportal-iete.herokuapp.com/auth/q/",
-    //         {
-    //             method: "POST",
-    //             headers: { "Authorization":token, "Content-Type": "application/json" },
-    //             body: JSON.stringify({
-    //                 domain: 1
-    //             }),
-                
-    //         }
-    //     )
-    //     .then(response => response.json())
-    //     .then(json => {
-    //         setQuestions([...json.data])
-    //         console.log("REACHED HERE-FETCHED: ",json.data);
-    //         console.log("REACHED HERE-FETCHED: ",json);
-
-    //     })
-
-    // },[])
-
-
-
 
     useEffect(() => {
         setForce(!force);
     }, [ques_id])
-    // console.log("AFTER USE STATE");
-
-    
-    // console.log("QUESTIONS: ",questions);
 
     let ques = {}
     let nextQues = {}
@@ -110,8 +82,6 @@ const Question = (props) => {
         }
     }
 
-    // console.log("QUES: ",ques);
-
     if (ques.ques_type === 0){
         if (ques.selected === undefined){
             ques.selected="blank";
@@ -121,6 +91,7 @@ const Question = (props) => {
             ques.answer = "";
         }
     }
+
     ques.submitted = false;
 
     var OptCol="blackOptions"
@@ -136,11 +107,7 @@ const Question = (props) => {
         } else if (ques.selected === ques.options[3].option){
             greenOption = 3;
         }
-        // console.log("GreenOption: ",greenOption);
     }
-    // console.log("QUES_TYPE: ",ques.ques_type);
-
-    // console.log(ques.answer);
 
     const handleChangeLQ = e => {
         console.log("Handle Change Called!");
@@ -284,6 +251,9 @@ const Question = (props) => {
                             ques.submitted = true;
                             ans++;
                             not_ans--;
+
+                            props.handleChange(ques_id);
+
                             fetch(
                                 "https://recportal-iete.herokuapp.com/auth/sub/",
                                 {
@@ -316,7 +286,6 @@ const Question = (props) => {
                                 <Link to={`/endquiz/${ans}/${not_ans}`}>
                                     <Button variant="outlined" color="greenUsed" sx={{ color: "white " }} onClick={() => {
 
-                                        props.handleChange(ques_id);
 
                                         fetch(
                                             "https://recportal-iete.herokuapp.com/auth/testsubmit/",
