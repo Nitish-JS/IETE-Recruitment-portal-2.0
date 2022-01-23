@@ -46,14 +46,11 @@ const App_Form = () => {
     setLoading(true);
 
     setState({ ...state, open: true });
-
-    // setErrors(validate(values));
     console.log(values);
     const response = await fetch(
       "https://recportal-iete.herokuapp.com/auth/login/",
       {
         method: "POST",
-        // credentials: 'include',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       }
@@ -69,9 +66,6 @@ const App_Form = () => {
     }
     localStorage.getItem("token") ? setSubmitted(true) : setSubmitted(false);
   };
-  // useEffect(()=>{
-  //   handleSubmit();
-  // },[]);
   if (localStorage.getItem("token")) {
     return <Redirect to="/" />;
   }
@@ -99,7 +93,6 @@ const App_Form = () => {
       )}
 
       {loading ? (
-        // <CircularProgress color="secondary" size={100}/>
         <Loading />
       ) : (
         <Login_form
