@@ -63,7 +63,7 @@ const ReadyPage = () => {
         console.log(response);
       })
       .catch(function (error) {
-        alert(error.message);
+        alert("Test Already Submitted !!");
         window.location.replace("/thankyou");
         // <Redirect to="/endquiz"></Redirect>;
         console.log(error);
