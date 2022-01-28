@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Typography, Container, Box, List, ListItemText } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -64,6 +64,8 @@ const ReadyPage = () => {
       })
       .catch(function (error) {
         alert(error.message);
+        window.location.replace("/thankyou");
+        // <Redirect to="/endquiz"></Redirect>;
         console.log(error);
       });
   }, []);
