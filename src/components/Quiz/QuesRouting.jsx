@@ -4,11 +4,17 @@ import Question from "./Question";
 import NavQuiz from "./NavQuiz";
 import Clock from "./Clock";
 import EndQuiz from "./EndQuiz";
+import ThankYou from "./ThankYou";
 import { Container } from "@mui/material";
 import Loading from "./Loading";
 import moment from "moment";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter,
+} from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoutes";
 
@@ -58,7 +64,7 @@ const QuesRouting = (props) => {
         var currentTime_moment = moment(time, "HH:mm:ss a");
         console.log("CURRENT TIME:", time);
 
-        var time_left = moment.duration(endTime.diff(currentTime_moment));
+        let time_left = moment.duration(endTime.diff(currentTime_moment));
         console.log("TIME LEFT FINAL: ", time_left._data.minutes + 1);
         setMinutes(time_left._data.minutes + 1);
         console.log("MINUTES LEFT QUESROUTING:", minutes);
@@ -76,10 +82,11 @@ const QuesRouting = (props) => {
   };
 
   const handleClock = () => {
-    return <EndQuiz />;
+    console.log("In Handle Clock");
+    return <EndQuiz question={questions} />;
   };
 
-  return questions.length == 0 ? (
+  return questions.length == 0 && minutes == 0 ? (
     <Loading />
   ) : (
     <Container
@@ -87,23 +94,21 @@ const QuesRouting = (props) => {
       style={{ background: "black", height: "100vh", overflow: "auto" }}
     >
       <Router>
-        <div style={{ display: "flex" }}>
-          <Route path="/quiz/ques/:ques_id">
-            <div style={{ width: "25%", paddingTop: "5%" }}>
-              <Clock minutes={minutes} handleClock={handleClock} />
-              <NavQuiz questions={questions} />
-            </div>
-            <Question questions={questions} handleChange={handleChange} />
-          </Route>
+        <Switch>
+          <div style={{ display: "flex" }}>
+            <Route path="/quiz/ques/:ques_id">
+              <div style={{ width: "25%", paddingTop: "5%" }}>
+                <Clock minutes={minutes} handleClock={handleClock} />
+                <NavQuiz questions={questions} />
+              </div>
+              <Question questions={questions} handleChange={handleChange} />
+            </Route>
 
-          <Route path="/endquiz">
-            <EndQuiz />
-          </Route>
-
-          {/* <Route path = "/endquiz/:ans/:not-ans">
-                        <EndQuiz />
-                    </Route> */}
-        </div>
+            <Route path="/endquiz">
+              <EndQuiz questions={questions} />
+            </Route>
+          </div>
+        </Switch>
       </Router>
     </Container>
   );

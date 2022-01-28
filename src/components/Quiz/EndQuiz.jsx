@@ -1,79 +1,201 @@
-import React from 'react';
-import { Typography, Button, Box, Container, TextField} from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
+import React, { useState, useEffect } from "react";
+import { Typography, Button, Box, Container, TextField } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
+import { Link, withRouter } from "react-router-dom";
+import ThankYou from "./ThankYou";
 
 const theme = createTheme({
-    status: {
-      danger: '#e53e3e',
+  status: {
+    danger: "#e53e3e",
+  },
+  palette: {
+    primary: {
+      main: "#0971f1",
+      darker: "#053e85",
     },
-    palette: {
-      primary: {
-        main: '#0971f1',
-        darker: '#053e85',
-      },
-      greenUsed: {
-        main: '#009254'
-      },
-      blackOptions: {
-          main: '#4D4D4D'
-      },
-      whiteUsed: {
-          main: "#ffffff"
-      },
-      finishButton: {
-          main: "#22424D"
-      }
+    greenUsed: {
+      main: "#009254",
     },
-    typography: {
-      fontFamily: [
-          'Poppins',
-        'Monument Extended'
-      ].join(','),
+    blackOptions: {
+      main: "#4D4D4D",
     },
-  });
+    whiteUsed: {
+      main: "#ffffff",
+    },
+    finishButton: {
+      main: "#22424D",
+    },
+  },
+  typography: {
+    fontFamily: ["Poppins", "Monument Extended"].join(","),
+  },
+});
 
-const EndQuiz = () => {
-    console.log("INSIDE ENDQUIZ");
+let token;
 
-    let ans=0;
-    let not_ans=0;
-
-    return (
-        <ThemeProvider theme={ theme }>
-            <Container sx={{ width: "90%" }}>
-                
-                <Typography variant="h3" fontFamily="Monument Extended" sx={{ textAlign: "center", color: "white", marginTop: "15%" }}>
-                    THANK YOU FOR YOUR RESPONSE
-                </Typography>
-
-                <Typography variant="h4" fontFamily="Poppins" sx={{ textAlign: "center", color: "#009254", marginTop: "2%", marginBottom: "15%" }}>
-                    Hope to see you in the next round
-                </Typography>
-
-                <Box sx={{ display: "inline", marginTop: "20%", backgroundColor: "#4D4D4D", boxShadow: "5px 5px 5px #009254", padding: "1.5%", margin: "5%", color:"white", borderRadius: "10px" }}>
-                    4
-                </Box>
-
-                <Typography variant="h5" fontFamily="Poppins" sx={{ textAlign: "center", color: "white", marginTop: "2%", display: "inline", margin: "2%", marginRight: "5%" }}>
-                    No of questions attempted
-                </Typography>
-
-                <Box sx={{ display: "inline", marginTop: "20%", backgroundColor: "#4D4D4D", boxShadow: "5px 5px 5px red", padding: "1.5%", margin: "5%", color:"white", borderRadius: "10px" }}>
-                    2
-                </Box>
-
-                <Typography variant="h5" fontFamily="Poppins" sx={{ textAlign: "center", color: "white", marginTop: "2%", display: "inline" }}>
-                    No of questions not attempted
-                </Typography>
-
-                <Button variant="contained" sx={{ backgroundColor: "#22424D", width: "25%", padding: "1%", marginLeft: "35%", marginTop: "15%", borderRadius: "10px" }}>
-                    <Typography fontFamily="Monument Extended" sx={{  fontSize: "150%", letterSpacing: "7px" }}> FINISH </Typography>
-                </Button>
-
-            </Container>
-        </ThemeProvider>
-    )
+try {
+  token = "Bearer " + JSON.parse(localStorage.getItem("token")).jwt;
+} catch (error) {
+  console.log(error);
 }
 
-export default EndQuiz
+const EndQuiz = ({ questions }) => {
+  console.log("INSIDE ENDQUIZ");
+
+  let ans = 0;
+  let not_ans = 0;
+
+  let arr = [];
+
+  useEffect(() => {
+    console.log("Use Effect in NavQuiz");
+  }, [questions]);
+
+  questions.forEach((ques) => {
+    if (ques.submitted == true) ans++;
+    else not_ans++;
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container sx={{ width: "90%" }}>
+        <Typography
+          variant="h3"
+          fontFamily="Monument Extended"
+          sx={{ textAlign: "center", color: "white", marginTop: "15%" }}
+        >
+          THANK YOU FOR YOUR RESPONSE
+        </Typography>
+
+        <Typography
+          variant="h4"
+          fontFamily="Poppins"
+          sx={{
+            textAlign: "center",
+            color: "#009254",
+            marginTop: "2%",
+            marginBottom: "15%",
+          }}
+        >
+          Are you sure you want to submit?
+        </Typography>
+
+        <Box
+          sx={{
+            display: "inline",
+            marginTop: "20%",
+            backgroundColor: "#4D4D4D",
+            boxShadow: "5px 5px 5px #009254",
+            padding: "1.5%",
+            margin: "5%",
+            color: "white",
+            borderRadius: "10px",
+          }}
+        >
+          {ans}
+        </Box>
+
+        <Typography
+          variant="h5"
+          fontFamily="Poppins"
+          sx={{
+            textAlign: "center",
+            color: "white",
+            marginTop: "2%",
+            display: "inline",
+            margin: "2%",
+            marginRight: "5%",
+          }}
+        >
+          No of questions attempted
+        </Typography>
+
+        <Box
+          sx={{
+            display: "inline",
+            marginTop: "20%",
+            backgroundColor: "#4D4D4D",
+            boxShadow: "5px 5px 5px red",
+            padding: "1.5%",
+            margin: "5%",
+            color: "white",
+            borderRadius: "10px",
+          }}
+        >
+          {not_ans}
+        </Box>
+
+        <Typography
+          variant="h5"
+          fontFamily="Poppins"
+          sx={{
+            textAlign: "center",
+            color: "white",
+            marginTop: "2%",
+            display: "inline",
+          }}
+        >
+          No of questions not attempted
+        </Typography>
+
+        <Link to={`/quiz/ques/${questions[0].id}`}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#22424D",
+              width: "25%",
+              padding: "1%",
+              marginTop: "15%",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography
+              fontFamily="Monument Extended"
+              sx={{ fontSize: "150%", letterSpacing: "7px" }}
+            >
+              BACK
+            </Typography>
+          </Button>
+        </Link>
+
+        <Link to={`/thankyou`}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#22424D",
+              width: "25%",
+              padding: "1%",
+              marginLeft: "20%",
+              marginTop: "15%",
+              borderRadius: "10px",
+            }}
+            onClick={fetch(
+              "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+              {
+                method: "POST",
+                headers: {
+                  Authorization: token,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  domain: localStorage.getItem("domain"),
+                }),
+              }
+            )}
+          >
+            <Typography
+              fontFamily="Monument Extended"
+              sx={{ fontSize: "150%", letterSpacing: "7px" }}
+            >
+              {" "}
+              FINISH{" "}
+            </Typography>
+          </Button>
+        </Link>
+      </Container>
+    </ThemeProvider>
+  );
+};
+
+export default EndQuiz;
