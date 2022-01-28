@@ -86,7 +86,7 @@ const QuesRouting = (props) => {
     return <EndQuiz question={questions} />;
   };
 
-  return questions.length == 0 && minutes == 0 ? (
+  return questions.length === 0 && minutes === 0 ? (
     <Loading />
   ) : (
     <Container
