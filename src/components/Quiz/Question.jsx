@@ -36,18 +36,11 @@ let token = "";
 
 const Question = (props) => {
   const { ques_id } = useParams();
-
-  // let question_arr = JSON.parse(JSON.stringify(question_json));
-  // let question_arr = [];
-
   const [questions, setQuestions] = useState(
     JSON.parse(JSON.stringify(props.questions))
   );
 
-  console.log("PROPS IN QUESTIONS:", props.questions);
   const [force, setForce] = useState(true);
-
-  console.log("BEFORE USE STATE");
 
   useEffect(() => {
     setForce(!force);
@@ -96,21 +89,14 @@ const Question = (props) => {
     }
   }
 
+  let index = 0;
+  for (var i = 0; i < questions.length; i++)
+    if (questions[i].id == ques_id) index = i;
+
   const handleChangeLQ = (e) => {
-    console.log("Handle Change Called!");
     ques.answer = document.getElementById("longAnswer").value;
-    console.log(ques.answer);
     document.getElementById("longAnswer").value = ques.answer;
   };
-
-  // const handleFocusLQ = e => {
-  //     console.log("In Handle Focus");
-  //     // document.getElementById("longAnswer").value = ques.answer;
-  //     // place = document.getElementById("longAnswer").value;
-  //     var val = document.getElementById("longAnswer").value;
-  //     console.log(val);
-
-  // }
 
   return ques.ques_type == 0 ? (
     <ThemeProvider theme={theme}>
@@ -144,7 +130,7 @@ const Question = (props) => {
             color="#009254"
             sx={{ display: "inline", margin: "5% 2%", padding: "2% 2%" }}
           >
-            Question: {ques_id} &nbsp;
+            Question: {index + 1} &nbsp;
           </Typography>
 
           <Typography
@@ -162,11 +148,6 @@ const Question = (props) => {
               padding: "5% 0%",
             }}
           >
-            {/* {
-                            (greenOption === 0) &&
-                            console.log("FIRST OPTION IS GREEN")
-                            
-                        } */}
             {greenOption === 0
               ? (OptCol = "greenUsed")
               : (OptCol = "blackOptions")}
@@ -184,19 +165,13 @@ const Question = (props) => {
               style={{ boxShadow: "5px 5px 10px #009254" }}
               onClick={() => {
                 greenOption = 0;
-                // console.log("FIRST OPTION IS GREEN OPTION")
                 ques.selected = ques.options[0].option;
-                // console.log("Answer selected: "+ques.selected);
                 setForce(!force);
               }}
             >
               {ques.options[0].option}
             </Button>
 
-            {/* {
-                            (greenOption === 1) &&
-                            console.log("SECOND OPTION IS GREEN")
-                        } */}
             {greenOption === 1
               ? (OptCol = "greenUsed")
               : (OptCol = "blackOptions")}
@@ -213,9 +188,7 @@ const Question = (props) => {
               style={{ boxShadow: "5px 5px 10px #009254" }}
               onClick={() => {
                 greenOption = 1;
-                // console.log("SECOND OPTION IS GREEN OPTION")
                 ques.selected = ques.options[1].option;
-                // console.log("Answer selected: "+ques.selected);
                 setForce(!force);
               }}
             >
@@ -224,11 +197,6 @@ const Question = (props) => {
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            {/* {
-                            (greenOption === 2) &&
-                            console.log("THIRD OPTION IS GREEN")
-                            
-                        } */}
             {greenOption === 2
               ? (OptCol = "greenUsed")
               : (OptCol = "blackOptions")}
@@ -245,19 +213,14 @@ const Question = (props) => {
               style={{ boxShadow: "5px 5px 10px #009254" }}
               onClick={() => {
                 greenOption = 2;
-                // console.log("THIRD OPTION IS GREEN OPTION")
                 ques.selected = ques.options[2].option;
-                // console.log("Answer selected: "+ques.selected);
+
                 setForce(!force);
               }}
             >
               {ques.options[2].option}
             </Button>
 
-            {/* {
-                            (greenOption === 3) &&
-                            console.log("FOURTH OPTION IS GREEN")
-                        } */}
             {greenOption === 3
               ? (OptCol = "greenUsed")
               : (OptCol = "blackOptions")}
@@ -274,9 +237,9 @@ const Question = (props) => {
               style={{ boxShadow: "5px 5px 10px #009254" }}
               onClick={() => {
                 greenOption = 3;
-                // console.log("THIRD OPTION IS GREEN OPTION")
+
                 ques.selected = ques.options[3].option;
-                // console.log("Answer selected: "+ques.selected);
+
                 setForce(!force);
               }}
             >
@@ -330,13 +293,12 @@ const Question = (props) => {
                     domain: localStorage.getItem("domain"),
                   }),
                 });
-                // <Redirect to={`/quiz/ques/${parseInt(nextQues.id)}`} />
               }}
             >
               SUBMIT
             </Button>
 
-            {questions.length - 1 !== present_index ? (
+            {questions.length - 1 !== present_index && (
               <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
                 <Button
                   variant="contained"
@@ -346,17 +308,16 @@ const Question = (props) => {
                   NEXT QUESTION
                 </Button>
               </Link>
-            ) : (
-              <Link to={`/endquiz`}>
-                <Button
-                  variant="outlined"
-                  color="greenUsed"
-                  sx={{ color: "white " }}
-                >
-                  SUBMIT TEST
-                </Button>
-              </Link>
             )}
+            <Link to={`/endquiz`}>
+              <Button
+                variant="outlined"
+                color="greenUsed"
+                sx={{ color: "white " }}
+              >
+                SUBMIT TEST
+              </Button>
+            </Link>
           </Box>
         </div>
       </Container>
@@ -381,11 +342,13 @@ const Question = (props) => {
             variant="h5"
             fontFamily="Monument extended"
             color="white"
-            sx={{ padding: "0% 2% 5% 2%" }}
+            sx={{ padding: "0% 2% 5% 2%", display: "inline" }}
           >
             {" "}
             Section 2
           </Typography>
+
+          <br />
 
           <Typography
             fontFamily="Poppins"
@@ -393,7 +356,7 @@ const Question = (props) => {
             color="#009254"
             sx={{ display: "inline", margin: "5% 2%", padding: "2% 2%" }}
           >
-            Question: {ques_id} &nbsp;
+            Question: {index + 1} &nbsp;
           </Typography>
 
           <Typography
@@ -421,7 +384,6 @@ const Question = (props) => {
               }}
               onChange={handleChangeLQ}
             ></TextField>
-            {/* onChange  value */}
           </Box>
         </Box>
 
@@ -470,7 +432,7 @@ const Question = (props) => {
             SUBMIT
           </Button>
 
-          {questions.length - 1 !== present_index ? (
+          {questions.length - 1 !== present_index && (
             <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
               <Button
                 variant="contained"
@@ -480,18 +442,17 @@ const Question = (props) => {
                 NEXT QUESTION
               </Button>
             </Link>
-          ) : (
-            // <Link to={`/endquiz/${ans}/${not_ans}`}>
-            <Link to={`/endquiz`}>
-              <Button
-                variant="outlined"
-                color="greenUsed"
-                sx={{ color: "white " }}
-              >
-                SUBMIT TEST
-              </Button>
-            </Link>
           )}
+
+          <Link to={`/endquiz`}>
+            <Button
+              variant="outlined"
+              color="greenUsed"
+              sx={{ color: "white ", display: "block" }}
+            >
+              SUBMIT TEST
+            </Button>
+          </Link>
         </Box>
       </Container>
     </ThemeProvider>
