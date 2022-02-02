@@ -4,19 +4,11 @@ import Question from "./Question";
 import NavQuiz from "./NavQuiz";
 import Clock from "./Clock";
 import EndQuiz from "./EndQuiz";
-import ThankYou from "./ThankYou";
 import { Container } from "@mui/material";
 import Loading from "./Loading";
 import moment from "moment";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter,
-} from "react-router-dom";
-
-import ProtectedRoute from "./ProtectedRoutes";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 let token = "";
 
@@ -27,19 +19,12 @@ try {
 }
 
 const QuesRouting = (props) => {
-  // const [step, setStep] = useState(1);
-
   let question_arr = [];
   let totalDuration;
   let startTime;
 
   const [questions, setQuestions] = useState(question_arr);
   const [minutes, setMinutes] = useState(0);
-  let questions_new;
-  const [clock, setClock] = useState(0);
-  // const [seconds, setSeconds] = useState(0);
-
-  console.log("START of QuesRouting");
 
   useEffect(async () => {
     await fetch("https://recportal-iete.herokuapp.com/auth/q/", {
@@ -57,32 +42,24 @@ const QuesRouting = (props) => {
         startTime = json.starttime;
         var startTime_moment = moment(startTime, "HH:mm:ss a");
         var endTime = startTime_moment.add(totalDuration, "minutes");
-        console.log("START TIME:", startTime);
 
         var today = new Date();
         var time = today.toLocaleTimeString();
         var currentTime_moment = moment(time, "HH:mm:ss a");
-        console.log("CURRENT TIME:", time);
 
         let time_left = moment.duration(endTime.diff(currentTime_moment));
-        console.log("TIME LEFT FINAL: ", time_left._data.minutes + 1);
         setMinutes(time_left._data.minutes + 1);
-        console.log("MINUTES LEFT QUESROUTING:", minutes);
       });
   }, []);
-
-  console.log("QUESTIONS:", questions);
 
   const handleChange = (id_to_find) => {
     for (let i = 0; i < questions.length; i++)
       if (questions[i].id == id_to_find) questions[i].submitted = true;
 
-    console.log("QUESTIONS in QuesROUTING _____", questions);
     setQuestions([...questions]);
   };
 
   const handleClock = () => {
-    console.log("In Handle Clock");
     return <EndQuiz question={questions} />;
   };
 
