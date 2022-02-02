@@ -20,7 +20,6 @@ const Clock = (props) => {
 
   React.useEffect(() => {
     if (seconds !== 0) {
-      console.log("SECONDS in Clock: ", seconds);
       if (seconds > 1) {
         sec = sec - 1;
         setTimeout(() => setSeconds(seconds - 1), 1000);

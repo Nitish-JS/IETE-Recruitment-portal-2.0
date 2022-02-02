@@ -33,15 +33,13 @@ try {
 }
 
 const NavQuiz = ({ questions }) => {
-  console.log("QUESTIONS in NavQuiz: ", questions);
-
   const [force, setForce] = useState(true);
 
   // let question_arr = [];
   // const [questions, setQuestions] = useState(props.questions);
 
   useEffect(() => {
-    console.log("Use Effect in NavQuiz");
+    // console.log("Use Effect in NavQuiz");
   }, [questions]);
 
   return questions !== undefined ? (

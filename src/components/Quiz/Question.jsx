@@ -4,9 +4,8 @@ import question_json from "../../questions.json";
 import { Typography, Button, Box, Container, TextField } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "./Loading";
-import NavQuiz from "./NavQuiz";
 
 const theme = createTheme({
   status: {
@@ -34,12 +33,22 @@ const theme = createTheme({
 
 let token = "";
 
+try {
+  token = "Bearer " + JSON.parse(localStorage.getItem("token")).jwt;
+} catch (error) {
+  console.log(error);
+}
+
 const Question = (props) => {
+  const { pathname } = window.location;
+  const path = pathname.split("/");
+  console.log(path[3]);
   const { ques_id } = useParams();
   const [questions, setQuestions] = useState(
     JSON.parse(JSON.stringify(props.questions))
   );
 
+  const [force2, setForce2] = useState(1);
   const [force, setForce] = useState(true);
 
   useEffect(() => {
@@ -90,13 +99,34 @@ const Question = (props) => {
   }
 
   let index = 0;
-  for (var i = 0; i < questions.length; i++)
+  let i;
+  for (i = 0; i < questions.length; i++)
     if (questions[i].id == ques_id) index = i;
 
+  // console.log("STARTING:", questions);
+
+  const [longAnswers, setlongAnswers] = useState([]);
+  if (longAnswers[index] == undefined) longAnswers[index] = "";
+
   const handleChangeLQ = (e) => {
-    ques.answer = document.getElementById("longAnswer").value;
-    document.getElementById("longAnswer").value = ques.answer;
+    const { name, value } = e.target;
+
+    questions[index].answer = document.getElementById("longAnswer").value;
+    longAnswers[index] = value;
+    setlongAnswers([...longAnswers]);
+    // console.log("NEW ARRAY INSIDE:", longAnswers[index]);
+
+    // console.log("inside handle change1:", questions);
+    // console.log("inside handle change2:", questions[index]);
+    // console.log("inside handle change3:", questions[index].answer);
+    // console.log("index:", index);
+    setQuestions(questions);
+    // document.getElementById("longAnswer").value = questions[index].answer;
+    // console.log("IN HANDLE CHANGE:", questions);
+    console.log("IN HANDLE CHANGE:", longAnswers[index]);
   };
+
+  console.log("NEW ARRAY OUTSIDE:", longAnswers);
 
   return ques.ques_type == 0 ? (
     <ThemeProvider theme={theme}>
@@ -369,14 +399,19 @@ const Question = (props) => {
 
           <Box sx={{ padding: "4%" }} id="longAnswerBox">
             <TextField
+              name="longAnswer"
               color="whiteUsed"
               variant="outlined"
               multiline
               rows={10}
               fullWidth
               id="longAnswer"
-              defaultValue={ques.answer}
-              placeholder="Answer"
+              value={longAnswers[index]}
+              placeholder={
+                questions[index].answer
+                  ? questions[index].answer
+                  : "Answer here..."
+              }
               sx={{
                 background: "#009254",
                 borderRadius: "10px",

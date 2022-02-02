@@ -8,8 +8,6 @@ import { Container } from "@mui/material";
 // import { makeStyles } from '@mui/styles';
 // import Routing from '../Routing';
 import ProtectedRoute from "./ProtectedRoutes";
-import EndQuiz from "./EndQuiz";
-import ThankYou from "./ThankYou";
 
 const QuizRouting = (props) => {
   return (
