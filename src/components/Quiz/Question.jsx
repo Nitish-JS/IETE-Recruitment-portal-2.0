@@ -135,7 +135,7 @@ const Question = (props) => {
             TEST YOUR KNOWLEDGE
           </Typography>
 
-          <Typography
+          {/* <Typography
             variant="h5"
             fontFamily="Monument extended"
             color="white"
@@ -143,7 +143,7 @@ const Question = (props) => {
           >
             {" "}
             Section 1
-          </Typography>
+          </Typography> */}
 
           <Typography
             fontFamily="Poppins"
@@ -153,20 +153,28 @@ const Question = (props) => {
           >
             Question: {index + 1} &nbsp;
           </Typography>
-
-          <Typography
-            fontFamily="Poppins"
-            variant="h5"
-            sx={{ display: "inline", margin: "2% 0%", color: "white" }}
-          >
-            {ques.ques_main}
-          </Typography>
+          <Box sx={{ width: "50%" }}>
+            <pre
+              // fontFamily="Poppins"
+              // variant="h5"
+              // sx={{ display: "inline", margin: "2% 2%", color: "white" }}
+              style={{
+                color: "white",
+                padding: "0% 20%",
+                fontSize: "120%",
+                fontFamily: "Poppins",
+                width: "70%",
+              }}
+            >
+              {ques.ques_main}
+            </pre>
+          </Box>
 
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-around",
-              padding: "5% 0%",
+              padding: "2% 0%",
             }}
           >
             {greenOption === 0
@@ -359,7 +367,7 @@ const Question = (props) => {
             TEST YOUR KNOWLEDGE
           </Typography>
 
-          <Typography
+          {/* <Typography
             variant="h5"
             fontFamily="Monument extended"
             color="white"
@@ -367,7 +375,7 @@ const Question = (props) => {
           >
             {" "}
             Section 2
-          </Typography>
+          </Typography> */}
 
           <br />
 
@@ -380,13 +388,19 @@ const Question = (props) => {
             Question: {index + 1} &nbsp;
           </Typography>
 
-          <Typography
-            fontFamily="Poppins"
-            variant="h5"
-            sx={{ display: "inline", margin: "2% 0%", color: "white" }}
+          <pre
+            // fontFamily="Poppins"
+            // variant="h5"
+            // sx={{ display: "inline", margin: "2% 2%", color: "white" }}
+            style={{
+              color: "white",
+              padding: "0% 20%",
+              fontSize: "120%",
+              fontFamily: "Poppins",
+            }}
           >
             {ques.ques_main}
-          </Typography>
+          </pre>
 
           <Box sx={{ padding: "4%" }} id="longAnswerBox">
             <TextField

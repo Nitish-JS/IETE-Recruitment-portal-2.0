@@ -27,7 +27,6 @@ const theme = createTheme({
   fontFamily: ["Poppins", "Monument Extended"].join(","),
 });
 
-
 let token = "";
 let duration = 0;
 
@@ -60,7 +59,7 @@ const ReadyPage = () => {
 
       data: JSON.stringify(data),
 
-      url: "https://recportal-iete.herokuapp.com/auth/q/",
+      url: "https://recportal-iete.herokuapp.com/auth/time/",
     };
 
     axios(options)
@@ -71,6 +70,7 @@ const ReadyPage = () => {
         console.log(response);
       })
       .catch(function (error) {
+        alert(error);
         alert("Test Already Submitted !!");
         window.location.replace("/thankyou");
         // <Redirect to="/endquiz"></Redirect>;
@@ -78,10 +78,11 @@ const ReadyPage = () => {
       });
   }, []);
 
-  // console.log("QUESTIONS in READY PAGE",questions);
+  console.log("QUESTIONS in READY PAGE", questions);
   return questions.length === 0 ? (
     <Loading />
   ) : (
+    // return (
     // submitted === true ? (
     //   <ThemeProvider theme={theme}>
     //     <Typography
@@ -144,25 +145,33 @@ const ReadyPage = () => {
           </Typography>
         </Box>
 
-        <List sx={{ width: "75%", mx: "12.5%", color: "white", fontSize: 20 ,listStyle:"disc"}} >
-          <ListItemText sx={{ padding: "2%" ,display:"list-item"}} >
+        <List
+          sx={{
+            width: "75%",
+            mx: "12.5%",
+            color: "white",
+            fontSize: 20,
+            listStyle: "disc",
+          }}
+        >
+          <ListItemText sx={{ padding: "2%", display: "list-item" }}>
             <Typography sx={{ fontFamily: "Poppins" }}>
-            You will have only 1 attempt at the quiz
+              You will have only 1 attempt at the quiz
             </Typography>
           </ListItemText>
-          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
-          Switching Tabs is not permitted. This will lead to disqualification from recruitment process
+          <ListItemText sx={{ padding: "2%", display: "list-item" }}>
+            Switching Tabs is not permitted. This will lead to disqualification
+            from recruitment process
           </ListItemText>
-          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
-          You will have {duration} mins to complete the quiz
+          <ListItemText sx={{ padding: "2%", display: "list-item" }}>
+            You will have {duration} mins to complete the quiz
           </ListItemText>
-          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
-          Once you submit, you will not be able to review your answers again
+          <ListItemText sx={{ padding: "2%", display: "list-item" }}>
+            Once you submit, you will not be able to review your answers again
           </ListItemText>
         </List>
 
         <Link to={`/quiz/ques/${questions[0].id}`}>
-          {/* <Link to={`/quiz/ques/1`}> */}
           <Button
             variant="contained"
             underline="none"
@@ -172,6 +181,35 @@ const ReadyPage = () => {
               padding: "1%",
               margin: "5% 42% 0% 42%",
               fontFamily: "Monument Extended",
+            }}
+            onClick={() => {
+              const data = { domain: localStorage.getItem("domain") };
+
+              const options = {
+                method: "POST",
+
+                headers: {
+                  "content-type": "application/json",
+                  Authorization: token,
+                },
+
+                data: JSON.stringify(data),
+
+                url: "https://recportal-iete.herokuapp.com/auth/q/",
+              };
+
+              axios(options)
+                .then(function (response) {
+                  // handle success
+                  setQuestions(response.data.data);
+                  setDuration(response.data.totalduration);
+                  console.log(response);
+                })
+                .catch(function (error) {
+                  alert("Test Already Submitted !!");
+                  window.location.replace("/thankyou");
+                  console.log(error);
+                });
             }}
           >
             START QUIZ
