@@ -114,15 +114,7 @@ const Question = (props) => {
     questions[index].answer = document.getElementById("longAnswer").value;
     longAnswers[index] = value;
     setlongAnswers([...longAnswers]);
-    // console.log("NEW ARRAY INSIDE:", longAnswers[index]);
-
-    // console.log("inside handle change1:", questions);
-    // console.log("inside handle change2:", questions[index]);
-    // console.log("inside handle change3:", questions[index].answer);
-    // console.log("index:", index);
     setQuestions(questions);
-    // document.getElementById("longAnswer").value = questions[index].answer;
-    // console.log("IN HANDLE CHANGE:", questions);
     console.log("IN HANDLE CHANGE:", longAnswers[index]);
   };
 
