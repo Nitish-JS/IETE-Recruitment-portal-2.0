@@ -6,6 +6,7 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
 import Loading from "./Quiz/Loading";
 import axios from "axios";
+import { makeStyles } from "@mui/styles";
 
 const theme = createTheme({
   status: {
@@ -26,6 +27,7 @@ const theme = createTheme({
   fontFamily: ["Poppins", "Monument Extended"].join(","),
 });
 
+
 let token = "";
 let duration = 0;
 
@@ -36,6 +38,12 @@ try {
 }
 
 const ReadyPage = () => {
+  // const useStyles=makeStyles(()=>({
+  //   list:{
+  //     listStyle:"circle"
+  //   }
+  // }))
+  // const classes=useStyles();
   let ques_arr = [];
   //   const [submitted, setSubmitted] = useState(false);
   // let submitted = false;
@@ -136,28 +144,20 @@ const ReadyPage = () => {
           </Typography>
         </Box>
 
-        <List sx={{ width: "75%", mx: "12.5%", color: "white", fontSize: 20 }}>
-          <ListItemText sx={{ padding: "2%" }}>
+        <List sx={{ width: "75%", mx: "12.5%", color: "white", fontSize: 20 ,listStyle:"disc"}} >
+          <ListItemText sx={{ padding: "2%" ,display:"list-item"}} >
             <Typography sx={{ fontFamily: "Poppins" }}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus
-              provident, temporibus commodi id quam nobis. Sit ab impedit
-              voluptatibus, laboriosam rerum neque et nulla eveniet!
+            You will have only 1 attempt at the quiz
             </Typography>
           </ListItemText>
-          <ListItemText sx={{ padding: "2%" }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus
-            provident, temporibus commodi id quam nobis. Sit ab impedit
-            voluptatibus, laboriosam rerum neque et nulla eveniet!
+          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
+          Switching Tabs is not permitted. This will lead to disqualification from recruitment process
           </ListItemText>
-          <ListItemText sx={{ padding: "2%" }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus
-            provident, temporibus commodi id quam nobis. Sit ab impedit
-            voluptatibus, laboriosam rerum neque et nulla eveniet!
+          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
+          You will have {duration} mins to complete the quiz
           </ListItemText>
-          <ListItemText sx={{ padding: "2%" }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus
-            provident, temporibus commodi id quam nobis. Sit ab impedit
-            voluptatibus, laboriosam rerum neque et nulla eveniet!
+          <ListItemText sx={{ padding: "2%",display:"list-item" }}>
+          Once you submit, you will not be able to review your answers again
           </ListItemText>
         </List>
 

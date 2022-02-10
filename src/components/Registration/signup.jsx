@@ -31,12 +31,13 @@ const Signup = (props) => {
                 <input
                   id="name"
                   type="text"
-                  placeholder="name"
+                  placeholder="Name"
                   required
                   onChange={handleChange}
                   value={values ? values.name : ""}
                   name="name"
                 />
+              </p>
                 {/* {errors.name && <p>{errors.name}</p>} */}
               <p>
                 <span className="input-label">Email</span>
@@ -44,7 +45,7 @@ const Signup = (props) => {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="email"
+                  placeholder="Email"
                   required
                   onChange={handleChange}
                   value={values? values.email: ""}
@@ -52,7 +53,7 @@ const Signup = (props) => {
                 {/* {errors.email && <p>{errors.email}</p>} */}
               </p>
               
-              </p>
+              
               <p>
                 <span className="input-label">Password</span>
                 <input
@@ -93,7 +94,7 @@ const Signup = (props) => {
                 />
               </p>
               <p>
-                <input class="btn" type="submit" value="Sign In" />
+                <input class="btn" type="submit" value="Register" />
               </p>
               <span className="register-login">
                 Already Registered? <Link to="/login">Login</Link>

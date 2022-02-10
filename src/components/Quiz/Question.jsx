@@ -117,7 +117,6 @@ const Question = (props) => {
     setQuestions(questions);
     console.log("IN HANDLE CHANGE:", longAnswers[index]);
   };
-
   console.log("NEW ARRAY OUTSIDE:", longAnswers);
 
   return ques.ques_type == 0 ? (

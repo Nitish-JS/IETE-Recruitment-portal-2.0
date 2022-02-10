@@ -46,6 +46,7 @@ const Form = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors(null);
     setLoading(true);
 
     setState({ ...state, open: true });
@@ -58,10 +59,10 @@ const Form = () => {
         body: JSON.stringify(values),
       }
     )
-    const content = await response.json();
-    console.log(content);
-    console.log(response)
-    console.log(response.status);
+    const content =await  response.json();
+    // console.log(content);
+    // console.log(response)
+    // console.log(response.status);
     if (response.status === 404) {
       setLoading(false);
       setErrors(content.message);
@@ -69,6 +70,7 @@ const Form = () => {
       setLoading(false);
       setErrors(content.errors);
     } else if (response.status === 200) {
+      setErrors(null);
       localStorage.setItem('email',values.email)
       setSubmitted(true);
     }
@@ -88,7 +90,8 @@ const Form = () => {
           key={vertical + horizontal}
         >
           <Alert
-            severity="error"
+          
+            severity={errors?"error":"success"}
             sx={{ width: "100%" }}
             variant="filled"
             onClose={handleClose}

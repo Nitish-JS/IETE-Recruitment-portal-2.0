@@ -1,44 +1,18 @@
-import React from 'react'
-import {Route,Redirect,withRouter} from 'react-router-dom';
-import Home from '../Home';
-import ReadyPage from '../ReadyPage';
-import Routing from '../Routing';
-import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router';
-const useStyles=makeStyles({
-    container:{
-      display: "flex"
-    }
-  });
+import React from "react";
+import { Route } from "react-router-dom";
 
 const ProtectedRoute = (props) => {
-    const history=useHistory();
-    const classes=useStyles();
-    const token=localStorage.getItem('token');
-    if(token)
-    {
-        return <Route path={props.path} component={props.component} />
-    }
-    else{
+ 
 
-        // return ( <Redirect to='/' component={Home} />);
-        // return ( <RedirHome />);
-        // alert("Register or login before taking the quiz")
-        window.location.replace('/');
+  const token = localStorage.getItem("token");
+  if (token) {
+    return <Route path={props.path} component={props.component} />;
+  } else {
+    // window.alert("Login before taking test");
+    // window.location.href='/';
+    window.location.replace("/");
+    // alert("Login before taking test");
+  }
+};
 
-        //  <Alert>Register or login before taking the quiz</Alert>
-        // return(<div className={classes.container}>
-        // <Routing />
-        //  <Home />
-        // </div>
-        //  )
-        // history.push('/');
-        // return null;
-        // return (<Redirect to='/' />)
-    }
-
-
-
-}
-
-export default ProtectedRoute
+export default ProtectedRoute;
