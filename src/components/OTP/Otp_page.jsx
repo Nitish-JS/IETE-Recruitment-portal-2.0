@@ -40,6 +40,7 @@ const Otp_page = (props) => {
             <p>
                 <input class="btn" type="submit" value="Verify" />
               </p>
+              <p>Check spam if you didnt receive mail</p>
             </form>
           </div>
         </div>

@@ -11,7 +11,6 @@ const OTP_Form = () => {
     email: localStorage.getItem('email'),
     otp: "",
   });
-  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [otpError, setOtpError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -41,6 +40,7 @@ const OTP_Form = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setOtpError(null);
     setLoading(true);
 
     setState({ ...state, open: true });
@@ -55,16 +55,21 @@ const OTP_Form = () => {
         body: JSON.stringify(values),
       }
     );
-    const content = await response.json();
+    const content =  await response.json();
     console.log(response);
     console.log(content);
-    if (content.status === 403) {
+    if (response.status === 403 ) {
       setLoading(false);
       setOtpError(content.message);
+    }
+    if(response.status===404){
+      setLoading(false);
+      setOtpError(content.error);
     }
     if (response.status === 200) {
       setSubmitted(true);
     }
+    
   };
   if (submitted) {
     return <Redirect to="/login" />;
@@ -82,7 +87,7 @@ const OTP_Form = () => {
           TransitionComponent={state.Transition}
         >
           <Alert
-            severity="error"
+            severity={otpError?"error":"success"}
             sx={{ width: "100%" }}
             variant="filled"
             onClose={handleClose}
@@ -98,7 +103,7 @@ const OTP_Form = () => {
           values={values}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          errors={errors}
+          
         />
       )}
     </div>

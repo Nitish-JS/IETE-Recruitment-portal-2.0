@@ -29,7 +29,7 @@ const App_Form = () => {
     setState({ ...state, open: false });
   };
 
-  const [errors, setErrors] = useState({});
+
   const [submitted, setSubmitted] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -42,11 +42,13 @@ const App_Form = () => {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    setLoginError(null);
     setLoading(true);
 
     setState({ ...state, open: true });
-    console.log(values);
+    // console.log(values);
     const response = await fetch(
       "https://recportal-iete.herokuapp.com/auth/login/",
       {
@@ -56,8 +58,8 @@ const App_Form = () => {
       }
     );
     const content = await response.json();
-    console.log(response);
-    console.log(content);
+    // console.log(response);
+    // console.log(content);
     if (response.status === 200) {
       localStorage.setItem("token", JSON.stringify(content));
     } else if (response.status === 401) {
@@ -65,6 +67,7 @@ const App_Form = () => {
       setLoginError(content.detail);
     }
     localStorage.getItem("token") ? setSubmitted(true) : setSubmitted(false);
+
   };
   if (localStorage.getItem("token")) {
     return <Redirect to="/" />;
@@ -82,7 +85,7 @@ const App_Form = () => {
           TransitionComponent={state.Transition}
         >
           <Alert
-            severity="error"
+            severity={loginError?"error":"success"}
             sx={{ width: "100%" }}
             variant="filled"
             onClose={handleClose}
@@ -99,7 +102,7 @@ const App_Form = () => {
           values={values}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          errors={errors}
+          
         />
       )}
     </div>

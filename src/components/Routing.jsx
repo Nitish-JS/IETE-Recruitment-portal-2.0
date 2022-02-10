@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./Home";
 // import Info from "./Info";
-// import QA from "./Info";
+import QA from "./FAQ/QA";
 import Domain_page from "./domains/Domain_page";
 import Todo from "./Todo";
 import Wait from "./Wait";
@@ -32,9 +32,8 @@ const Routing = () => {
         
           <Route path="/signup" exact component={Form} />
           <Route path="/info" component={Domain_page} />
-          {/* <Route path="/qa" exact>
-                    <QA />
-                    </Route> */}
+          <Route path="/qa" exact component={QA} />
+      
           <Route path="/todo" component={Todo} />
 
           <Route path="/wait" component={Wait} />
