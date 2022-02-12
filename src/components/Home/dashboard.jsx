@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Techcse from "../../images/Technical.svg";
 import design from "../../images/Design.svg";
-import Management from '../../images/Management.svg';
+import Management from "../../images/Management.svg";
 // import Techece from "../../images/Group 75 (2).svg";
 import Techece from "../../images/Group 93.svg";
 
@@ -54,24 +54,45 @@ const Dashboard = () => {
   };
   const [data, setData] = useState([]);
   useEffect(() => {
-    if(!localStorage.getItem("token")){
+    if (!localStorage.getItem("token")) {
       alert("Please Log in first");
-      window.location.replace('/login');
+      window.location.replace("/login");
       return null;
-    }
-    fetch("https://recportal-iete.herokuapp.com/auth/testdone/", {
-      method: "GET",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-    }).then((result) => {
-      result.json().then((resp) => {
-        console.log(resp.submitted);
-        setData(resp.submitted);
+    } else {
+      fetch("https://recportal-iete.herokuapp.com/auth/user/", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+      }).then((result) => {
+        result.json().then((resp) => {
+          // console.log(result.status);
+          // console.log(resp);
+          if (result.status !== 200) {
+            localStorage.clear();
+            window.location.reload();
+
+            // return null;
+          } else {
+            fetch("https://recportal-iete.herokuapp.com/auth/testdone/", {
+              method: "GET",
+              headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+              },
+            }).then((result) => {
+              result.json().then((resp) => {
+                // console.log(resp.submitted);
+                setData(resp.submitted);
+              });
+            });
+          }
+          // setData(resp.submitted);
+        });
       });
-    });
-  },[]);
+    }
+  }, []);
 
   const domainArray = [
     {
@@ -96,15 +117,17 @@ const Dashboard = () => {
     },
   ];
 
-  if(data.length>0){
-    const submittedArray=domainArray.filter(item => data.includes(item.title));
+  if (data.length > 0) {
+    const submittedArray = domainArray.filter((item) =>
+      data.includes(item.title)
+    );
     return (
       <div className="Carousel-outer-div" id="dashboard">
-      <h1 className="carousel-heading ">Tests Completed : {submittedArray.length}</h1>
+        <h1 className="carousel-heading ">
+          Tests Completed : {submittedArray.length}
+        </h1>
         <Slider {...settings}>
-          
           {submittedArray.map((item) => {
-            
             return (
               <div className="card">
                 <div className="circle-card">{item.img}</div>
@@ -112,14 +135,12 @@ const Dashboard = () => {
               </div>
             );
           })}
-          
         </Slider>
         {/* <h1 className='timeline-heading'>Timeline</h1>
         <HorizontalLinearStepper/> */}
       </div>
     );
-  }
-  else{
+  } else {
     return null;
   }
   // return null;
