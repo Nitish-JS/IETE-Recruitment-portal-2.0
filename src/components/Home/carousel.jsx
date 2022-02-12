@@ -4,12 +4,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import Techcse from '../../images/4804443.jpg'
 // import Techece from "../../images/4968074.jpg";
+import Techece from "../../images/Group 93.svg";
+
 import Techcse from "../../images/Technical.svg";
 import Design from "../../images/Design.svg";
 import Management from "../../images/Management.svg";
 // import Techece from "../../images/23810.jpg";
 import Editorial from "../../images/Editorial.svg";
-import Techece from "../../images/Group 75 (2).svg";
+// import Techece from "../../images/Group 75 (2).svg";
 
 import "./carousel.css";
 import HorizontalLinearStepper from "./Timeline";

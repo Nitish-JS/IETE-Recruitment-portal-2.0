@@ -5,7 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Techcse from "../../images/Technical.svg";
 import design from "../../images/Design.svg";
 import Management from '../../images/Management.svg';
-import Techece from "../../images/Group 75 (2).svg";
+// import Techece from "../../images/Group 75 (2).svg";
+import Techece from "../../images/Group 93.svg";
+
 import editorial from "../../images/Editorial.svg";
 import "./carousel.css";
 import { useEffect } from "react";
@@ -52,6 +54,11 @@ const Dashboard = () => {
   };
   const [data, setData] = useState([]);
   useEffect(() => {
+    if(!localStorage.getItem("token")){
+      alert("Please Log in first");
+      window.location.replace('/login');
+      return null;
+    }
     fetch("https://recportal-iete.herokuapp.com/auth/testdone/", {
       method: "GET",
       headers: {
@@ -89,8 +96,8 @@ const Dashboard = () => {
     },
   ];
 
-  const submittedArray=domainArray.filter(item => data.includes(item.title));
   if(data.length>0){
+    const submittedArray=domainArray.filter(item => data.includes(item.title));
     return (
       <div className="Carousel-outer-div" id="dashboard">
       <h1 className="carousel-heading ">Tests Completed : {submittedArray.length}</h1>
