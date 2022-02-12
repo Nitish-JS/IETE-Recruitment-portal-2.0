@@ -167,6 +167,9 @@ const ReadyPage = () => {
             You will have {duration} mins to complete the quiz
           </ListItemText>
           <ListItemText sx={{ padding: "2%", display: "list-item" }}>
+            Click Submit button on each question to save your answer
+          </ListItemText>
+          <ListItemText sx={{ padding: "2%", display: "list-item" }}>
             Once you submit, you will not be able to review your answers again
           </ListItemText>
         </List>

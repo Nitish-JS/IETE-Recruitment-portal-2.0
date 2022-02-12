@@ -5,7 +5,7 @@ import Techcse from "../../images/Technical.svg";
 import Design from "../../images/Design.svg";
 import Management from '../../images/Management.svg';
 // import Techece from "../../images/Group 75 (2).svg";
-import Techece from "../../images/Group 75 (2).svg";
+import Techece from "../../images/Group 93.svg";
 import Editorial from "../../images/Editorial.svg"
 
 
