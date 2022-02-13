@@ -40,8 +40,9 @@ try {
   console.log(error);
 }
 
-const EndQuiz = ({ questions }) => {
+const EndQuiz = ({ questions, handleClose }) => {
   console.log("INSIDE ENDQUIZ");
+  console.log(questions);
 
   let ans = 0;
   let not_ans = 0;
@@ -58,8 +59,11 @@ const EndQuiz = ({ questions }) => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container sx={{ width: "90%" }}>
+    <ThemeProvider
+      theme={theme}
+      sx={{ width: "100%", backgroundColor: "black" }}
+    >
+      <Container sx={{ width: "100%", backgroundColor: "black" }}>
         <Typography
           variant="h3"
           fontFamily="Monument Extended"
@@ -81,7 +85,7 @@ const EndQuiz = ({ questions }) => {
           Are you sure you want to submit?
         </Typography>
 
-        <Box
+        {/* <Box
           sx={{
             display: "inline",
             marginTop: "20%",
@@ -137,62 +141,76 @@ const EndQuiz = ({ questions }) => {
           }}
         >
           No of questions not attempted
-        </Typography>
+        </Typography> */}
 
-        <Link to={`/quiz/ques/${questions[0].id}`}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#22424D",
-              width: "25%",
-              padding: "1%",
-              marginTop: "15%",
-              borderRadius: "10px",
-            }}
-          >
-            <Typography
-              fontFamily="Monument Extended"
-              sx={{ fontSize: "150%", letterSpacing: "7px" }}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            width: "100%",
+          }}
+        >
+          <div style={{ width: "50%" }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#22424D",
+                width: "50%",
+                padding: "5%",
+                marginTop: "15%",
+                marginLeft: "25%",
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                handleClose();
+              }}
             >
-              BACK
-            </Typography>
-          </Button>
-        </Link>
+              <Typography
+                fontFamily="Monument Extended"
+                sx={{ fontSize: "150%", letterSpacing: "7px" }}
+              >
+                BACK
+              </Typography>
+            </Button>
+          </div>
 
-        <Link to={`/thankyou`}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#22424D",
-              width: "25%",
-              padding: "1%",
-              marginLeft: "20%",
-              marginTop: "15%",
-              borderRadius: "10px",
-            }}
-            onClick={fetch(
-              "https://recportal-iete.herokuapp.com/auth/testsubmit/",
-              {
-                method: "POST",
-                headers: {
-                  Authorization: token,
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  domain: localStorage.getItem("domain"),
-                }),
-              }
-            )}
-          >
-            <Typography
-              fontFamily="Monument Extended"
-              sx={{ fontSize: "150%", letterSpacing: "7px" }}
-            >
-              {" "}
-              FINISH{" "}
-            </Typography>
-          </Button>
-        </Link>
+          <div style={{ width: "50%" }}>
+            <Link to={`/thankyou`} style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#22424D",
+                  width: "50%",
+                  padding: "5%",
+                  marginLeft: "25%",
+                  marginTop: "15%",
+                  borderRadius: "10px",
+                }}
+                onClick={fetch(
+                  "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                  {
+                    method: "POST",
+                    headers: {
+                      Authorization: token,
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      domain: localStorage.getItem("domain"),
+                    }),
+                  }
+                )}
+              >
+                <Typography
+                  fontFamily="Monument Extended"
+                  sx={{ fontSize: "150%", letterSpacing: "7px" }}
+                >
+                  {" "}
+                  FINISH{" "}
+                </Typography>
+              </Button>
+            </Link>
+          </div>
+        </Box>
       </Container>
     </ThemeProvider>
   );

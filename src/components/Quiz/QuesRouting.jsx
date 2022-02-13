@@ -74,7 +74,14 @@ const QuesRouting = (props) => {
         <Switch>
           <div style={{ display: "flex" }}>
             <Route path="/quiz/ques/:ques_id">
-              <div style={{ width: "25%", paddingTop: "5%" }}>
+              <div
+                style={{
+                  width: "25%",
+                  paddingTop: "5%",
+                  height: "1000px",
+                  overflow: "scroll",
+                }}
+              >
                 <Clock minutes={minutes} handleClock={handleClock} />
                 <NavQuiz questions={questions} />
               </div>

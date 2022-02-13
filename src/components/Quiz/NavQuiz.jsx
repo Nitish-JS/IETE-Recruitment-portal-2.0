@@ -75,14 +75,12 @@ const NavQuiz = ({ questions }) => {
                   key={key + 1}
                   to={`/quiz/ques/${ques.id}`}
                   style={{ margin: "10% 2%" }}
-                
                 >
                   <Button
                     color="darkGrey"
                     variant="contained"
                     sx={{ width: "10%", height: "140%", borderRadius: "10px" }}
                     style={{ boxShadow: "5px 5px 10px #009254" }}
-      
                   >
                     <Typography color="white"> {key + 1} </Typography>
                   </Button>
@@ -93,7 +91,7 @@ const NavQuiz = ({ questions }) => {
                 <Link
                   key={key + 1}
                   to={`/quiz/ques/${ques.id}`}
-                  style={{ margin: "15% 2%" }}
+                  style={{ margin: "15% 2%", textDecoration: "none" }}
                 >
                   <Button
                     color="darkGrey"

@@ -174,7 +174,10 @@ const ReadyPage = () => {
           </ListItemText>
         </List>
 
-        <Link to={`/quiz/ques/${questions[0].id}`}>
+        <Link
+          to={`/quiz/ques/${questions[0].id}`}
+          style={{ textDecoration: "none" }}
+        >
           <Button
             variant="contained"
             underline="none"

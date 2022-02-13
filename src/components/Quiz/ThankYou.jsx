@@ -65,7 +65,7 @@ const ThankYou = () => {
         >
           Hope to see you in the next Round :)
         </Typography>
-        <Link to={"/"}>
+        <Link to={"/"} style={{ textDecoration: "none" }}>
           <Button
             variant="contained"
             sx={{

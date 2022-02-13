@@ -6,6 +6,22 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import EndQuiz from "./EndQuiz";
+
+import Dialog from "@mui/material/Dialog";
+import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Slide from "@mui/material/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const theme = createTheme({
   status: {
@@ -44,9 +60,18 @@ const Question = (props) => {
   const path = pathname.split("/");
   console.log(path[3]);
   const { ques_id } = useParams();
+  const [open, setOpen] = React.useState(false);
   const [questions, setQuestions] = useState(
     JSON.parse(JSON.stringify(props.questions))
   );
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [force2, setForce2] = useState(1);
   const [force, setForce] = useState(true);
@@ -103,8 +128,6 @@ const Question = (props) => {
   for (i = 0; i < questions.length; i++)
     if (questions[i].id == ques_id) index = i;
 
-  // console.log("STARTING:", questions);
-
   const [longAnswers, setlongAnswers] = useState([]);
   if (longAnswers[index] == undefined) longAnswers[index] = "";
 
@@ -115,25 +138,45 @@ const Question = (props) => {
     longAnswers[index] = value;
     setlongAnswers([...longAnswers]);
     setQuestions(questions);
-    console.log("IN HANDLE CHANGE:", longAnswers[index]);
   };
-  console.log("NEW ARRAY OUTSIDE:", longAnswers);
 
   return ques.ques_type == 0 ? (
     <ThemeProvider theme={theme}>
       <Container sx={{ width: "70%" }}>
         <div style={{ background: "black" }}>
-          <Typography
-            fontFamily="Monument Extended"
+          <Box
             sx={{
-              color: "white",
-              textAlign: "center",
-              padding: "10% 0% 5% 0%",
-              fontSize: "150%",
+              display: "flex",
+              justifyContent: "space-around",
+              marginTop: "5%",
             }}
           >
-            TEST YOUR KNOWLEDGE
-          </Typography>
+            <div style={{ width: "75%" }}>
+              <Typography
+                fontFamily="Monument Extended"
+                sx={{
+                  color: "white",
+                  textAlign: "center",
+                  padding: "10% 0% 10% 0%",
+                  fontSize: "150%",
+                }}
+              >
+                TEST YOUR KNOWLEDGE
+              </Typography>
+            </div>
+            <div style={{ width: "25%", marginTop: "5%" }}>
+              <Button
+                variant="contained"
+                color="greenUsed"
+                sx={{ color: "white ", display: "block", marginTop: "10%" }}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
+                SUBMIT TEST
+              </Button>
+            </div>
+          </Box>
 
           {/* <Typography
             variant="h5"
@@ -286,9 +329,12 @@ const Question = (props) => {
             }}
           >
             {present_index !== 0 && (
-              <Link to={`/quiz/ques/${prevQues.id}`}>
+              <Link
+                to={`/quiz/ques/${prevQues.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Button
-                  variant="text"
+                  variant="outlined"
                   color="greenUsed"
                   sx={{ color: "white" }}
                 >
@@ -328,9 +374,12 @@ const Question = (props) => {
             </Button>
 
             {questions.length - 1 !== present_index && (
-              <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
+              <Link
+                to={`/quiz/ques/${parseInt(nextQues.id)}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   color="greenUsed"
                   sx={{ color: "white" }}
                 >
@@ -338,15 +387,24 @@ const Question = (props) => {
                 </Button>
               </Link>
             )}
-            <Link to={`/endquiz`}>
-              <Button
-                variant="outlined"
-                color="greenUsed"
-                sx={{ color: "white " }}
-              >
-                SUBMIT TEST
-              </Button>
-            </Link>
+            {/* <Button
+              variant="outlined"
+              color="greenUsed"
+              sx={{ color: "white ", display: "block" }}
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              SUBMIT TEST
+            </Button> */}
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Transition}
+              sx={{ backgroundColor: "black" }}
+            >
+              <EndQuiz questions={questions} handleClose={handleClose} />
+            </Dialog>
           </Box>
         </div>
       </Container>
@@ -355,7 +413,40 @@ const Question = (props) => {
     <ThemeProvider theme={theme}>
       <Container sx={{ width: "70%", background: "black" }}>
         <Box>
-          <Typography
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              marginTop: "5%",
+            }}
+          >
+            <div style={{ width: "75%" }}>
+              <Typography
+                fontFamily="Monument Extended"
+                sx={{
+                  color: "white",
+                  textAlign: "center",
+                  padding: "10% 0% 10% 0%",
+                  fontSize: "150%",
+                }}
+              >
+                TEST YOUR KNOWLEDGE
+              </Typography>
+            </div>
+            <div style={{ width: "25%", marginTop: "5%" }}>
+              <Button
+                variant="contained"
+                color="greenUsed"
+                sx={{ color: "white ", display: "block", marginTop: "10%" }}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
+                SUBMIT TEST
+              </Button>
+            </div>
+          </Box>
+          {/* <Typography
             fontFamily="Monument Extended"
             sx={{
               color: "white",
@@ -365,16 +456,6 @@ const Question = (props) => {
             }}
           >
             TEST YOUR KNOWLEDGE
-          </Typography>
-
-          {/* <Typography
-            variant="h5"
-            fontFamily="Monument extended"
-            color="white"
-            sx={{ padding: "0% 2% 5% 2%", display: "inline" }}
-          >
-            {" "}
-            Section 2
           </Typography> */}
 
           <br />
@@ -436,8 +517,15 @@ const Question = (props) => {
           }}
         >
           {present_index !== 0 && (
-            <Link to={`/quiz/ques/${prevQues.id}`}>
-              <Button variant="text" color="greenUsed" sx={{ color: "white" }}>
+            <Link
+              to={`/quiz/ques/${prevQues.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                variant="outlined"
+                color="greenUsed"
+                sx={{ color: "white" }}
+              >
                 PREVIOUS QUESTION
               </Button>
             </Link>
@@ -473,9 +561,12 @@ const Question = (props) => {
           </Button>
 
           {questions.length - 1 !== present_index && (
-            <Link to={`/quiz/ques/${parseInt(nextQues.id)}`}>
+            <Link
+              to={`/quiz/ques/${parseInt(nextQues.id)}`}
+              style={{ textDecoration: "none" }}
+            >
               <Button
-                variant="contained"
+                variant="outlined"
                 color="greenUsed"
                 sx={{ color: "white" }}
               >
@@ -484,15 +575,24 @@ const Question = (props) => {
             </Link>
           )}
 
-          <Link to={`/endquiz`}>
-            <Button
-              variant="outlined"
-              color="greenUsed"
-              sx={{ color: "white ", display: "block" }}
-            >
-              SUBMIT TEST
-            </Button>
-          </Link>
+          {/* <Button
+            variant="outlined"
+            color="greenUsed"
+            sx={{ color: "white ", display: "block" }}
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            SUBMIT TEST
+          </Button> */}
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Transition}
+            sx={{ backgroundColor: "black" }}
+          >
+            <EndQuiz questions={questions} handleClose={handleClose} />
+          </Dialog>
         </Box>
       </Container>
     </ThemeProvider>
