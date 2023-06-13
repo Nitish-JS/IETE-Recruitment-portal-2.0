@@ -11,7 +11,7 @@ import "../App.css";
 const Auth = () => {
   let token="Bearer "+localStorage.getItem('token');
   const response = fetch(
-    "https://recportal-iete.herokuapp.com/auth/user/",
+    "https://recportal-iete.onrender.com/auth/user/",
     {
       
       method: "POST",

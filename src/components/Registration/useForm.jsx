@@ -25,7 +25,7 @@ const useForm = (callback,validate) => {
 
         
         console.log(values);
-        const response= await fetch('https://recportal-iete.herokuapp.com/auth/register/', {
+        const response= await fetch('hhttps://recportal-iete.onrender.com/auth/register/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(

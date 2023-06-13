@@ -59,7 +59,7 @@ const ReadyPage = () => {
 
       data: JSON.stringify(data),
 
-      url: "https://recportal-iete.herokuapp.com/auth/time/",
+      url: "https://recportal-iete.onrender.com/auth/time/",
     };
 
     axios(options)
@@ -201,7 +201,7 @@ const ReadyPage = () => {
 
                 data: JSON.stringify(data),
 
-                url: "https://recportal-iete.herokuapp.com/auth/q/",
+                url: "https://recportal-iete.onrender.com/auth/q/",
               };
 
               axios(options)

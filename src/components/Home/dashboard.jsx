@@ -59,7 +59,7 @@ const Dashboard = () => {
       window.location.replace("/login");
       return null;
     } else {
-      fetch("https://recportal-iete.herokuapp.com/auth/user/", {
+      fetch("https://recportal-iete.onrender.com/auth/user/", {
         method: "GET",
         headers: {
           Authorization: token,
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
             // return null;
           } else {
-            fetch("https://recportal-iete.herokuapp.com/auth/testdone/", {
+            fetch("https://recportal-iete.onrender.com/auth/testdone/", {
               method: "GET",
               headers: {
                 Authorization: token,

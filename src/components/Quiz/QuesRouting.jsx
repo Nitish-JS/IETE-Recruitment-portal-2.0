@@ -27,7 +27,7 @@ const QuesRouting = (props) => {
   const [minutes, setMinutes] = useState(0);
 
   useEffect(async () => {
-    await fetch("https://recportal-iete.herokuapp.com/auth/q/", {
+    await fetch("https://recportal-iete.onrender.com/auth/q/", {
       method: "POST",
       headers: { Authorization: token, "Content-Type": "application/json" },
       body: JSON.stringify({

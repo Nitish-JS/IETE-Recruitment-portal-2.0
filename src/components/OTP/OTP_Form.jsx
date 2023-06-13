@@ -48,7 +48,7 @@ const OTP_Form = () => {
     // setErrors(validate(values));
     // console.log(values);
     const response = await fetch(
-      "https://recportal-iete.herokuapp.com/auth/verifyotp/",
+      "https://recportal-iete.onrender.com/auth/verifyotp/",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

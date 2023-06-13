@@ -187,7 +187,7 @@ const EndQuiz = ({ questions, handleClose }) => {
                   borderRadius: "10px",
                 }}
                 onClick={fetch(
-                  "https://recportal-iete.herokuapp.com/auth/testsubmit/",
+                  "https://recportal-iete.onrender.com/auth/testsubmit/",
                   {
                     method: "POST",
                     headers: {

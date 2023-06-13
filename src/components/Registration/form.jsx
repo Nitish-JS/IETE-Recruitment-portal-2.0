@@ -52,7 +52,7 @@ const Form = () => {
     setState({ ...state, open: true });
 
     const response = await fetch(
-      "https://recportal-iete.herokuapp.com/auth/register/",
+      "https://recportal-iete.onrender.com/auth/register/",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

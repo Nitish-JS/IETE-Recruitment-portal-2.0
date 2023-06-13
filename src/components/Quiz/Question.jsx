@@ -355,7 +355,7 @@ const Question = (props) => {
 
                 props.handleChange(ques_id);
 
-                fetch("https://recportal-iete.herokuapp.com/auth/sub/", {
+                fetch("https://recportal-iete.onrender.com/auth/sub/", {
                   method: "POST",
                   headers: {
                     Authorization: token,
@@ -542,7 +542,7 @@ const Question = (props) => {
               props.handleChange(ques_id);
 
               // API
-              fetch("https://recportal-iete.herokuapp.com/auth/sub/", {
+              fetch("hhttps://recportal-iete.onrender.com/auth/sub/", {
                 method: "POST",
                 headers: {
                   Authorization: token,
